@@ -1,5 +1,6 @@
 package dol.example.controller;
 
+import dol.example.util.SoapUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,7 +16,9 @@ public class IndexController {
 
     @GetMapping
     public ResponseEntity<Object> testGet(){
-        System.out.println("TEST GET");
+        System.out.println("TEST SOAP API");
+        SoapUtil soapUtil = new SoapUtil();
+        soapUtil.getCharacterInfoByAccountID();
         return null;
     }
 }
