@@ -171,6 +171,7 @@ Temporary Items
 
 ### Gradle ###
 .gradle
+.gradle/**
 **/build/
 !src/**/build/
 
