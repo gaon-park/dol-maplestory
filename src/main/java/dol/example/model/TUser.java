@@ -37,14 +37,21 @@ public class TUser {
     /**
      * 유저가 육성하고 있는 캐릭터 리스트
      */
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @OneToMany(mappedBy = "user", cascade = {
+            CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.PERSIST,
+            CascadeType.REFRESH})
     private List<TCharacter> tCharacterList = new ArrayList<>();
 
     /**
      * 유니온 리스트(월드당 1개)
      */
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @OneToMany(mappedBy = "user", cascade = {
+            CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.PERSIST,
+            CascadeType.REFRESH})
     @Column
     private List<TUnion> tUnionList = new ArrayList<>();
-
 }

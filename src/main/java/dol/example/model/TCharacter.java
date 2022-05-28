@@ -25,7 +25,11 @@ public class TCharacter {
     /**
      * 캐릭터 소유자
      */
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    @ManyToOne(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE,
+            CascadeType.REFRESH,
+            CascadeType.DETACH})
     @JoinColumn(name = "user_id")
     private TUser user;
 

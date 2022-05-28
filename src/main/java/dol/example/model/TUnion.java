@@ -25,7 +25,11 @@ public class TUnion {
     /**
      * 유니온 데이터의 소유자
      */
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    @ManyToOne(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE,
+            CascadeType.REFRESH,
+            CascadeType.DETACH})
     @JoinColumn(name = "user_id")
     private TUser user;
 
@@ -48,7 +52,10 @@ public class TUnion {
      * @return
      */
     public List<Integer> getCharacterIdList(){
-        return Arrays.stream(characterIds.split("/")).map(i -> Integer.parseInt(i)).toList();
+        return Arrays.stream(
+                characterIds.split("/"))
+                .map(i -> Integer.parseInt(i))
+                .toList();
     }
 
     /**
@@ -56,10 +63,8 @@ public class TUnion {
      * @param idList
      */
     public void setCharacterIds(List<Integer> idList){
-        this.characterIds = String.join("/", idList.stream().map(i -> Integer.toString(i)).toList());
-    }
-
-    public void getUnionLev(){
-
+        this.characterIds = String.join("/", idList.stream()
+                .map(i -> Integer.toString(i))
+                .toList());
     }
 }
