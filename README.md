@@ -21,12 +21,13 @@
 1. TUnion entity class 작성 완료
 2. UnionInfo, JobInfo, JobClassificationInfo Enum 작성 완료(메이플 직업 왜 이렇게 많은 거야...)
 
-
+30:
+1. BossInfo Enum 작성 완료(보스는 또 왜 이렇게 많은 거야...)
 
 ## TODOLIST
-1. BossInfo Enum
-2. Enum -> DB 테이블(jpa)
-3. 일반 db관련 소스(repository: select, insert, update, delete)
-4. api 정리(우선 뭘 만들 것인가, 메서드는 뭘로 해서 request/response 값의 형태 등)
-5. 비즈니스 코드(service)
-6. api 테스트 코드
+- [x] BossInfo Enum: 2022.05.30 
+- [ ] Enum -> DB 테이블(jpa)
+- [ ] 일반 db관련 소스(repository: select, insert, update, delete)
+- [ ] api 정리(우선 뭘 만들 것인가, 메서드는 뭘로 해서 request/response 값의 형태 등)
+- [ ] 비즈니스 코드(service)
+- [ ] api 테스트 코드
