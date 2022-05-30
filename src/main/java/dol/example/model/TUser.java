@@ -37,6 +37,7 @@ public class TUser {
     /**
      * 유저가 육성하고 있는 캐릭터 리스트
      */
+    @Builder.Default
     @OneToMany(mappedBy = "user", cascade = {
             CascadeType.DETACH,
             CascadeType.MERGE,
@@ -47,6 +48,7 @@ public class TUser {
     /**
      * 유니온 리스트(월드당 1개)
      */
+    @Builder.Default
     @OneToMany(mappedBy = "user", cascade = {
             CascadeType.DETACH,
             CascadeType.MERGE,
