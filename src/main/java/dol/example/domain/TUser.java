@@ -1,4 +1,4 @@
-package dol.example.model;
+package dol.example.domain;
 
 import lombok.*;
 import org.hibernate.annotations.ColumnTransformer;

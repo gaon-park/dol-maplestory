@@ -1,10 +1,9 @@
-package dol.example.model;
+package dol.example.domain;
 
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Getter
 @Setter
