@@ -24,9 +24,11 @@
 30:
 1. BossInfo Enum 작성 완료(보스는 또 왜 이렇게 많은 거야...)
 
+31:
+1. user login 관련 컬럼(pw 생각을 안 했었기 때문에 추가)
+
 ## TODOLIST
-- [x] BossInfo Enum: 2022.05.30 
-- [ ] Enum -> DB 테이블(jpa)
+- [x] BossInfo Enum: 2022.05.30
 - [ ] 일반 db관련 소스(repository: select, insert, update, delete)
 - [ ] api 정리(우선 뭘 만들 것인가, 메서드는 뭘로 해서 request/response 값의 형태 등)
 - [ ] 비즈니스 코드(service)
