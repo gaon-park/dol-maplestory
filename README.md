@@ -26,6 +26,7 @@
 
 31:
 1. user login 관련 컬럼(pw 생각을 안 했었기 때문에 추가)
+2. repository 생성(그저 JpaRepository 하나 상속받았을 뿐인데 완성?)
 
 ## TODOLIST
 - [x] BossInfo Enum: 2022.05.30

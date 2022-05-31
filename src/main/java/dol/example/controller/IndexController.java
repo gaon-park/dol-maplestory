@@ -16,9 +16,9 @@ public class IndexController {
 
     @GetMapping
     public ResponseEntity<Object> testGet(){
-        System.out.println("TEST SOAP API");
-        SoapUtil soapUtil = new SoapUtil();
-        soapUtil.getCharacterInfoByAccountID();
+//        System.out.println("TEST SOAP API");
+//        SoapUtil soapUtil = new SoapUtil();
+//        soapUtil.getCharacterInfoByAccountID();
         return null;
     }
 }
