@@ -1,4 +1,4 @@
-package dol.example.model;
+package dol.example.domain;
 
 import lombok.*;
 
@@ -19,6 +19,18 @@ public class TBoss {
 
     @Column(nullable = false)
     private String name;
+
+    @Column
+    private String difficulty;
+
+    @Column
+    private Boolean isDailyBoss;
+
+    @Column
+    private Boolean isWeeklyBoss;
+
+    @Column
+    private Boolean isMonthlyBoss;
 
     @Column(nullable = false)
     private Integer stonePrice;

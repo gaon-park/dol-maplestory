@@ -1,6 +1,6 @@
 package dol.example.common;
 
-import dol.example.model.TCharacter;
+import dol.example.domain.TCharacter;
 import lombok.Getter;
 
 import java.util.List;

@@ -1,6 +1,7 @@
-package dol.example.model;
+package dol.example.domain;
 
 import lombok.*;
+import org.hibernate.annotations.ColumnTransformer;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -24,9 +25,17 @@ public class TUser {
 
     /**
      * 넥슨에서 가져온 id
+     * 로그인할 때 사용할 id: 대표캐릭터 이름, 서버를 인증으로 사용하면 될 것 같다.
      */
     @Column(unique = true)
     private Long accountId;
+
+    @Column
+    @ColumnTransformer(
+            read = "decrypt(password)",
+            write = "encrypt(nvl(?, 'null'))"
+    )
+    private String password;
 
     /**
      * 대표 캐릭터 id

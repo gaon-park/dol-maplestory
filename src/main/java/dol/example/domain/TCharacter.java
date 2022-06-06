@@ -1,10 +1,9 @@
-package dol.example.model;
+package dol.example.domain;
 
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -99,6 +98,9 @@ public class TCharacter {
     @Column
     private String clearableBoss;
 
+    @OneToOne(mappedBy = "character")
+    @JoinColumn(name = "quest_id")
+    private TQuestOfCharacter quest;
 
     /**
      * setter
