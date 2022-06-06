@@ -99,7 +99,7 @@ public class TCharacter {
     private String clearableBoss;
 
     @OneToOne(mappedBy = "character")
-    @JoinColumn(name = "quest_id")
+    @PrimaryKeyJoinColumn
     private TQuestOfCharacter quest;
 
     /**

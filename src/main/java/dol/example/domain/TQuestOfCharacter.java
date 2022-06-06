@@ -1,6 +1,8 @@
 package dol.example.domain;
 
+import dol.example.common.DifficultyOfArcaneMinigame1;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
@@ -14,95 +16,85 @@ import javax.persistence.*;
 public class TQuestOfCharacter {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "character_id")
+    private Long characterId;
 
+    @MapsId
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "character_id", nullable = false)
     private TCharacter character;
 
-    /**
-     * 소멸의 여로 퀘스트
-     */
-    @Column
-    private Integer toDoQuest0;
+    @ColumnDefault("false")
+    private Boolean arcaneQuest0;
 
-    /**
-     * 츄츄아일랜드 퀘스트
-     */
-    @Column
-    private Integer toDoQuest1;
+    @ColumnDefault("false")
+    private Boolean arcaneQuest1;
 
-    /**
-     * 레헬른 퀘스트
-     */
-    @Column
-    private Integer toDoQuest2;
+    @ColumnDefault("false")
+    private Boolean arcaneQuest2;
 
-    /**
-     * 아르카나 퀘스트
-     */
-    @Column
-    private Integer toDoQuest3;
+    @ColumnDefault("false")
+    private Boolean arcaneQuest3;
 
-    /**
-     * 모라스 퀘스트
-     */
-    @Column
-    private Integer toDoQuest4;
+    @ColumnDefault("false")
+    private Boolean arcaneQuest4;
 
-    /**
-     * 에스페라 퀘스트
-     */
-    @Column
-    private Integer toDoQuest5;
+    @ColumnDefault("false")
+    private Boolean arcaneQuest5;
 
-    /**
-     * 소멸의 여로: 에르다 스펙트럼
-     */
-    @Column
-    private Integer toDoMiniGame0;
+    @ColumnDefault("false")
+    private Boolean arcaneMinigame0;
 
-    /**
-     * 츄츄 아일랜드: 배고픈 무토
-     */
-    @Column
-    private Integer toDoMiniGame1;
+    @ColumnDefault("false")
+    private Boolean arcaneMinigame1;
 
-    /**
-     * 레헬른: 드림 브레이커
-     */
-    @Column
-    private Integer toDoMiniGame2;
+    @ColumnDefault("null")
+    private DifficultyOfArcaneMinigame1 difficultyOfArcaneMinigame1;
 
-    /**
-     * 레헬른: 드림 브레이커 1판 클리어 층
-     */
-    @Column
-    private Integer toDoMiniGame2floor;
+    @ColumnDefault("false")
+    private Boolean arcaneMinigame2;
 
-    /**
-     * 아르카나: 스피릿 세이비어
-     */
-    @Column
-    private Integer toDoMiniGame3;
+    @ColumnDefault("0")
+    private Integer floorOfArcaneMinigame2;
 
-    /**
-     * 아르카나: 스피릿 세이비어 1판 점수
-     */
-    @Column
-    private Integer toDoMiniGame3Score;
+    @ColumnDefault("false")
+    private Boolean arcaneMinigame3;
 
-    /**
-     * 모라스: 엔하임 디펜스
-     */
-    @Column
-    private Integer toDoMiniGame4;
+    @ColumnDefault("0")
+    private Integer scoreOfArcaneMinigame3;
 
-    /**
-     * 에스페라: 프로텍스 에스페라
-     */
-    @Column
-    private Integer toDoMiniGame5;
+    @ColumnDefault("false")
+    private Boolean arcaneMinigame4;
 
+    @ColumnDefault("false")
+    private Boolean arcaneMinigame5;
+
+    @ColumnDefault("false")
+    private Boolean tenebris0;
+
+    @ColumnDefault("false")
+    private Boolean authenticQuest0;
+
+    @ColumnDefault("false")
+    private Boolean authenticQuest1;
+
+    @ColumnDefault("false")
+    private Boolean haven0;
+
+    @ColumnDefault("false")
+    private Boolean darkWorldTree0;
+
+    @ColumnDefault("false")
+    private Boolean kritias0;
+
+    @ColumnDefault("false")
+    private Boolean monsterPark0;
+
+    @ColumnDefault("false")
+    private Boolean union0;
+
+    @ColumnDefault("false")
+    private Boolean guild0;
+
+    @ColumnDefault("false")
+    private Boolean guild1;
 }

@@ -35,6 +35,12 @@
 2. swagger 로 api 별 정보를 구상하고 시작해야겠다는 걸 절실히 느낌
 3. jpa 연관 테이블 설정을 제대로 한 건지 불안해졌으므로 테스트 코드 작성할 때 유의할 것...
 
+06:
+1. TodoDTO, SymbolDTO등 quest관련 entity, enum
+2. TQuestOfCharacterService, TUserService 
+3. CharacterController, QuestController
+4. xml to json
+
 ## TODOLIST
 - [x] BossInfo Enum: 2022.05.30
 - [x] 일반 db관련 소스(repository: select, insert, update, delete)

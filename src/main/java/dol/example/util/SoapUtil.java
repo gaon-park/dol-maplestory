@@ -1,5 +1,8 @@
 package dol.example.util;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.XML;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -7,16 +10,14 @@ import org.xml.sax.InputSource;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.StringReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 public class SoapUtil {
-    public void getCharacterInfoByAccountID(Integer accountId){
+    public JSONObject getCharacterInfoByAccountID(Long accountId){
+        JSONObject result = null;
         try {
             // send message
             String sendMessage =
@@ -53,23 +54,38 @@ public class SoapUtil {
                 responseStr += inputLine;
             }
 
+            // xml to json
+            result = convertXmlToJson(responseStr);
+
             // xml parsing
-            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-            DocumentBuilder db = dbf.newDocumentBuilder();
-            InputSource is = new InputSource();
-            is.setCharacterStream(new StringReader(responseStr));
-            Document dc = db.parse(is);
-            NodeList nl = dc.getElementsByTagName("DATA");
-            Element e = null;
-            for(int i = 0; i < nl.getLength(); i++){
-                e = (Element)nl.item(i);
-                System.out.println(e.getAttribute("value"));
-            }
+//            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+//            DocumentBuilder db = dbf.newDocumentBuilder();
+//            InputSource is = new InputSource();
+//            is.setCharacterStream(new StringReader(responseStr));
+//            Document dc = db.parse(is);
+//            NodeList nl = dc.getElementsByTagName("DATA");
+//            Element e = null;
+//            for(int i = 0; i < nl.getLength(); i++){
+//                e = (Element)nl.item(i);
+//                System.out.println(e.getAttribute("value"));
+//            }
 
             reader.close();
             writer.close();
         } catch(Exception e){
             e.printStackTrace();
         }
+
+        return result;
+    }
+
+    private JSONObject convertXmlToJson(String xml){
+        JSONObject jsonObject = null;
+        try{
+            jsonObject = XML.toJSONObject(xml);
+        } catch (JSONException e){
+            e.printStackTrace();
+        }
+        return jsonObject;
     }
 }
