@@ -78,4 +78,18 @@ public enum JobInfo {
         this.jobClassificationInfo = jobClassificationInfo;
         this.jobDetail = jobDetail;
     }
+
+    /**
+     * jobDetail 값으로 JobInfo 확인
+     * @param jobDetail
+     * @return
+     */
+    static public JobInfo getJobInfoByJobDetail(String jobDetail){
+        for(JobInfo jobInfo : JobInfo.values()){
+            if(jobInfo.jobDetail.equals(jobDetail)){
+                return jobInfo;
+            }
+        }
+        return null;
+    }
 }

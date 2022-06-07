@@ -1,4 +1,4 @@
-package dol.example.dto;
+package dol.example.dto.todo;
 
 import dol.example.common.TodoInfo;
 import lombok.Getter;
@@ -6,22 +6,22 @@ import lombok.Getter;
 import java.io.Serializable;
 
 @Getter
-public class TodoDTO implements Serializable {
+public class Todo implements Serializable {
     private TodoInfo todoInfo;
-    private SymbolDTO symbolDTO;
+    private Symbol symbolDTO;
 
-    public TodoDTO(TodoInfo todoInfo){
+    public Todo(TodoInfo todoInfo){
         this.todoInfo = todoInfo;
     }
 
-    public TodoDTO(TodoInfo todoInfo, SymbolDTO symbolDTO){
+    public Todo(TodoInfo todoInfo, Symbol symbolDTO){
         if(isTodoOfSymbol(todoInfo)){
             this.todoInfo = todoInfo;
             this.symbolDTO = symbolDTO;
         }
     }
 
-    public void setSymbolDTO(SymbolDTO symbolDTO){
+    public void setSymbolDTO(Symbol symbolDTO){
         if(isTodoOfSymbol(todoInfo)){
             this.symbolDTO = symbolDTO;
         }

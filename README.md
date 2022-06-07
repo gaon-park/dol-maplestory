@@ -41,6 +41,11 @@
 3. CharacterController, QuestController
 4. xml to json
 
+07:
+1. json to object
+2. object to json
+3. 메이플 server -> 대표캐릭터 정보 획득 api
+
 ## TODOLIST
 - [x] BossInfo Enum: 2022.05.30
 - [x] 일반 db관련 소스(repository: select, insert, update, delete)

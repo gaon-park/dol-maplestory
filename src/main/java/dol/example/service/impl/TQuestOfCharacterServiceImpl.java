@@ -1,7 +1,7 @@
 package dol.example.service.impl;
 
 import dol.example.domain.TQuestOfCharacter;
-import dol.example.dto.TodoDTO;
+import dol.example.dto.todo.Todo;
 import dol.example.repository.TCharacterRepository;
 import dol.example.repository.TQuestOfCharacterRepository;
 import dol.example.service.TQuestOfCharacterService;
@@ -26,18 +26,18 @@ public class TQuestOfCharacterServiceImpl implements TQuestOfCharacterService {
     }
 
     @Override
-    public TQuestOfCharacter saveQuestOfCharacter(Long characterId, List<TodoDTO> todoDTOList) throws NotFoundException {
+    public TQuestOfCharacter saveQuestOfCharacter(Long characterId, List<Todo> todoDTOList) throws NotFoundException {
         tCharacterRepository.findById(characterId).orElseThrow(() -> new NotFoundException("존재하지 않는 캐릭터 id " + characterId));
 
         TQuestOfCharacter tQuestOfCharacter = convert(characterId, todoDTOList);
         return tQuestOfCharacterRepository.save(tQuestOfCharacter);
     }
 
-    private TQuestOfCharacter convert(Long characterId, List<TodoDTO> todoDTOList){
+    private TQuestOfCharacter convert(Long characterId, List<Todo> todoDTOList){
         TQuestOfCharacter tQuestOfCharacter = new TQuestOfCharacter();
         tQuestOfCharacter.setCharacterId(characterId);
 
-        for(TodoDTO dto : todoDTOList){
+        for(Todo dto : todoDTOList){
             switch (dto.getTodoInfo()){
                 case ARCANE_QUEST0 -> tQuestOfCharacter.setArcaneQuest0(true);
                 case ARCANE_QUEST1 -> tQuestOfCharacter.setArcaneQuest1(true);

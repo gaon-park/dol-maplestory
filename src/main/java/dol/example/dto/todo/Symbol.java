@@ -1,4 +1,4 @@
-package dol.example.dto;
+package dol.example.dto.todo;
 
 import dol.example.common.DifficultyOfArcaneMinigame1;
 import lombok.Getter;
@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-public class SymbolDTO implements Serializable {
+public class Symbol implements Serializable {
     private Integer lev;
     private Integer growth;
 

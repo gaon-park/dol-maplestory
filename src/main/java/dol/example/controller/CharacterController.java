@@ -13,14 +13,6 @@ import java.util.Map;
 @RequestMapping("/v1/character")
 public class CharacterController {
 
-    @RequestMapping(value = "/info/byNexonAccountId/{accountId}", method = RequestMethod.GET)
-    public String getCharacterInfoByNexonAccountId(@PathVariable("accountId") String accountId){
-        JSONObject info = new SoapUtil().getCharacterInfoByAccountID(Long.valueOf(accountId));
-        System.out.println(info);
-
-        return JSONObject.valueToString(info);
-    }
-
     @RequestMapping(value = "/info/byDolMaplestoryId/{id}", method = RequestMethod.GET)
     public void getCharacterInfoByDolMaplestoryId(){
 

@@ -1,18 +1,25 @@
 package dol.example.domain;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
+import dol.example.common.JobInfo;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.*;
 
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
 @Table(name = "t_character")
 @Entity
-public class TCharacter {
+@JsonRootName("t_character")
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class TCharacter implements Serializable {
 
     /**
      * 캐릭터 고유 id
@@ -48,7 +55,7 @@ public class TCharacter {
      * 닉네임
      */
     @Column(nullable = false)
-    private String name;
+    private String characterName;
 
     /**
      * 레벨
@@ -126,13 +133,55 @@ public class TCharacter {
      * @return
      */
     public Map<Integer, Integer> getClearableBossToMap(){
+        if(this.clearableBoss == null) return null;
         List<String> bossSetList = Arrays.stream(this.clearableBoss.split("/")).toList();
-        Map<Integer, Integer> already = new HashMap<>();
+        Map<Integer, Integer> bossMap = new HashMap<>();
         for(String bossSet : bossSetList){
             Integer bossId = Integer.parseInt(bossSet.split("_")[0]);
             Integer person = Integer.parseInt(bossSet.split("_")[1]);
-            already.put(bossId, person);
+            bossMap.put(bossId, person);
         }
-        return already;
+        return bossMap;
+    }
+
+
+    /**
+     * 기본 생성자
+     */
+    public TCharacter(){ }
+
+    /**
+     * 역직렬화 전용 생성자
+     * @param avatarImgUrl
+     * @param worldName
+     * @param characterName
+     * @param lev
+     * @param exp
+     * @param jobDetail
+     * @param pop
+     * @param totRank
+     * @param worldRank
+     */
+    @JsonCreator
+    public TCharacter(
+            @JsonProperty("AvatarImgURL") String avatarImgUrl,
+            @JsonProperty("WorldName") String worldName,
+            @JsonProperty("CharacterName") String characterName,
+            @JsonProperty("Lev") Integer lev,
+            @JsonProperty("Exp") Long exp,
+            @JsonProperty("JobDetail") String jobDetail,
+            @JsonProperty("Pop") Integer pop,
+            @JsonProperty("TotRank") Integer totRank,
+            @JsonProperty("WorldRank") Integer worldRank
+    ){
+        this.avatarImgUrl = avatarImgUrl;
+        this.worldName = worldName;
+        this.characterName = characterName;
+        this.lev = lev;
+        this.exp = exp;
+        this.jobId = JobInfo.getJobInfoByJobDetail(jobDetail).getId();
+        this.pop = pop;
+        this.totRank = totRank;
+        this.worldRank = worldRank;
     }
 }
