@@ -19,6 +19,7 @@ import java.util.*;
 @Entity
 @JsonRootName("t_character")
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@ToString
 public class TCharacter implements Serializable {
 
     /**
@@ -92,6 +93,9 @@ public class TCharacter implements Serializable {
      */
     @Column
     private Integer worldRank;
+
+    @Column
+    private String guild;
 
     /**
      * 클리어 가능한 보스
