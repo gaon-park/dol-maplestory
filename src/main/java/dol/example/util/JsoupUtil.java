@@ -8,6 +8,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.boot.autoconfigure.batch.BatchProperties;
 
 import java.io.IOException;
 
@@ -35,7 +36,7 @@ public class JsoupUtil {
             tCharacter = new TCharacter();
             tCharacter.setAvatarImgUrl(element.select(".char_img").select("img").attr("src"));
             tCharacter.setCharacterName(element.selectFirst("dt").text());
-            tCharacter.setJobId(JobInfo.getJobInfoByJobDetail(element.selectFirst("dd").text().split("/")[1].strip()).getId());
+            tCharacter.setJob(JobInfo.getJobInfoByJobDetail(element.selectFirst("dd").text().split("/")[1].strip()));
 
             Elements elements = element.select("td");
             // elemenets의 순서

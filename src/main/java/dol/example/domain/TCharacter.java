@@ -27,6 +27,7 @@ public class TCharacter implements Serializable {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty("id")
     private Long id;
 
     /**
@@ -38,63 +39,74 @@ public class TCharacter implements Serializable {
             CascadeType.REFRESH,
             CascadeType.DETACH})
     @JoinColumn(name = "user_id")
+    @JsonProperty("userId")
     private TUser user;
 
     /**
      * 아바타 이미지 url
      */
     @Column
+    @JsonProperty("avatarImgUrl")
     private String avatarImgUrl;
 
     /**
      * 월드명
      */
     @Column
+    @JsonProperty("worldName")
     private String worldName;
 
     /**
      * 닉네임
      */
     @Column(nullable = false)
+    @JsonProperty("characterName")
     private String characterName;
 
     /**
      * 레벨
      */
     @Column
+    @JsonProperty("lev")
     private Integer lev;
 
     /**
      * 경험치
      */
     @Column
+    @JsonProperty("exp")
     private Long exp;
 
     /**
      * 직업 id
      */
     @Column
-    private Integer jobId;
+    @JsonProperty("job")
+    private JobInfo job;
 
     /**
      * 인기도
      */
     @Column
+    @JsonProperty("pop")
     private Integer pop;
 
     /**
      * 전체 랭킹
      */
     @Column
+    @JsonProperty("totRank")
     private Integer totRank;
 
     /**
      * 월드 랭킹
      */
     @Column
+    @JsonProperty("worldRank")
     private Integer worldRank;
 
     @Column
+    @JsonProperty("guild")
     private String guild;
 
     /**
@@ -107,10 +119,12 @@ public class TCharacter implements Serializable {
      * boss id 10에 대해 6명 입장해서 클리어
      */
     @Column
+    @JsonProperty("clearableBoss")
     private String clearableBoss;
 
     @OneToOne(mappedBy = "character")
     @PrimaryKeyJoinColumn
+    @JsonProperty("questId")
     private TQuestOfCharacter quest;
 
     /**
@@ -155,7 +169,7 @@ public class TCharacter implements Serializable {
     public TCharacter(){ }
 
     /**
-     * 역직렬화 전용 생성자
+     * SOAP API RESPONSE 역직렬화 생성자
      * @param avatarImgUrl
      * @param worldName
      * @param characterName
@@ -183,7 +197,7 @@ public class TCharacter implements Serializable {
         this.characterName = characterName;
         this.lev = lev;
         this.exp = exp;
-        this.jobId = JobInfo.getJobInfoByJobDetail(jobDetail).getId();
+        this.job = JobInfo.getJobInfoByJobDetail(jobDetail);
         this.pop = pop;
         this.totRank = totRank;
         this.worldRank = worldRank;

@@ -1,5 +1,6 @@
 package dol.example.common;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 
 import static dol.example.common.JobClassificationInfo.*;
@@ -107,6 +108,8 @@ public enum JobInfo {
 
     private Integer id;
     private JobClassificationInfo jobClassificationInfo;
+
+    @JsonValue
     private String jobDetail;
 
     private JobInfo(
