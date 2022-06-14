@@ -21,7 +21,7 @@ public enum WorldInfo {
     WORLD_14(14, "노바", false),
 
     // reboot
-    ALL_1(254, "전체월드", true),
+    ALL_1(254, "전체월드/리부트", true),
     WORLD_1(1, "리부트2", true),
     WORLD_2(2, "리부트", true);
 

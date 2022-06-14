@@ -1,7 +1,9 @@
 package dol.example.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.annotation.ObjectIdGenerator;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import dol.example.common.info.JobInfo;
 import lombok.*;
 
@@ -15,8 +17,8 @@ import java.util.*;
 @AllArgsConstructor
 @Table(name = "t_character")
 @Entity
-@JsonRootName("t_character")
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIdentityInfo (generator = ObjectIdGenerators.PropertyGenerator. class , property = "id" )
 @ToString
 public class TCharacter implements Serializable {
 
@@ -27,15 +29,8 @@ public class TCharacter implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    /**
-     * 캐릭터 소유자
-     */
-    @ManyToOne(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE,
-            CascadeType.REFRESH,
-            CascadeType.DETACH})
-    @JoinColumn(name = "user_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
     private TUser user;
 
     /**

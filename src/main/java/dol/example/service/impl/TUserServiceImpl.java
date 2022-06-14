@@ -1,16 +1,16 @@
 package dol.example.service.impl;
 
-import dol.example.common.exception.AlreadyExistException;
-import dol.example.common.exception.InvalidValueException;
+import dol.example.common.exception.advice.APIException;
+import dol.example.common.info.ExceptionInfo;
+import dol.example.domain.TCharacter;
 import dol.example.domain.TUser;
 import dol.example.repository.TUserRepository;
 import dol.example.service.TUserService;
-import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.management.BadAttributeValueExpException;
-import javax.management.InvalidAttributeValueException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class TUserServiceImpl implements TUserService {
@@ -19,24 +19,26 @@ public class TUserServiceImpl implements TUserService {
     TUserRepository tUserRepository;
 
     @Override
-    public TUser findTUser(String email){
-        return tUserRepository.findByEmail(email);
+    public TUser findTUser(Long id) {
+        return tUserRepository.findById(id).orElseThrow(() -> new APIException(ExceptionInfo.NOT_FOUND_EXCEPTION));
     }
 
     @Override
-    public TUser findTUser(Long id) throws NotFoundException {
-        return tUserRepository.findById(id).orElseThrow(() -> new NotFoundException("존재하지 않는 userId : " + id));
+    public TUser findTUser(String email){
+        return tUserRepository.findByEmail(email).orElseThrow(() -> new APIException(ExceptionInfo.NOT_FOUND_EXCEPTION));
     }
 
     @Override
     public TUser saveTUser(TUser tUser) {
-        if((tUser.getEmail() == null || tUser.getEmail().isEmpty())
-        || (tUser.getRepresentativeCharacterName() == null || tUser.getRepresentativeCharacterName().isEmpty())){
-            throw new InvalidValueException("email and representativeCharacterName cannot be null");
+        if(tUser.getEmail() == null || tUser.getEmail().isEmpty()
+                || tUser.getRepresentativeCharacterName() == null || tUser.getRepresentativeCharacterName().isEmpty()){
+            throw new APIException(ExceptionInfo.INVALID_REQUEST_EXCEPTION);
         }
-        if(findTUser(tUser.getEmail()) != null){
-            return tUserRepository.save(tUser);
+
+        if(!tUserRepository.findByEmail(tUser.getEmail()).isEmpty()){
+            throw new APIException(ExceptionInfo.ALREADY_EXIST_EXCEPTION);
         }
-        throw new AlreadyExistException("duplicate email");
+
+        return tUserRepository.save(tUser);
     }
 }
