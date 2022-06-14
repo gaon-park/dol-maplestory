@@ -1,6 +1,6 @@
 package dol.example.dto.todo;
 
-import dol.example.common.DifficultyOfArcaneMinigame1;
+import dol.example.common.info.DifficultyOfArcaneMinigame1;
 import lombok.Getter;
 import lombok.Setter;
 

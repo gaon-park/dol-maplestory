@@ -1,9 +1,9 @@
-package dol.example.common;
+package dol.example.common.info;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 
-import static dol.example.common.JobClassificationInfo.*;
+import static dol.example.common.info.JobClassificationInfo.*;
 
 @Getter
 public enum JobInfo {

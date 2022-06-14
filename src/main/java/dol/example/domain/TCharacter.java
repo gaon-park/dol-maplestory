@@ -1,10 +1,8 @@
 package dol.example.domain;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import dol.example.common.JobInfo;
+import dol.example.common.info.JobInfo;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,7 +25,6 @@ public class TCharacter implements Serializable {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonProperty("id")
     private Long id;
 
     /**
@@ -39,74 +36,64 @@ public class TCharacter implements Serializable {
             CascadeType.REFRESH,
             CascadeType.DETACH})
     @JoinColumn(name = "user_id")
-    @JsonProperty("userId")
     private TUser user;
 
     /**
      * 아바타 이미지 url
      */
+    @Lob
     @Column
-    @JsonProperty("avatarImgUrl")
     private String avatarImgUrl;
 
     /**
      * 월드명
      */
     @Column
-    @JsonProperty("worldName")
     private String worldName;
 
     /**
      * 닉네임
      */
     @Column(nullable = false)
-    @JsonProperty("characterName")
     private String characterName;
 
     /**
      * 레벨
      */
     @Column
-    @JsonProperty("lev")
     private Integer lev;
 
     /**
      * 경험치
      */
     @Column
-    @JsonProperty("exp")
     private Long exp;
 
     /**
      * 직업 id
      */
     @Column
-    @JsonProperty("job")
     private JobInfo job;
 
     /**
      * 인기도
      */
     @Column
-    @JsonProperty("pop")
     private Integer pop;
 
     /**
      * 전체 랭킹
      */
     @Column
-    @JsonProperty("totRank")
     private Integer totRank;
 
     /**
      * 월드 랭킹
      */
     @Column
-    @JsonProperty("worldRank")
     private Integer worldRank;
 
     @Column
-    @JsonProperty("guild")
     private String guild;
 
     /**
@@ -119,13 +106,16 @@ public class TCharacter implements Serializable {
      * boss id 10에 대해 6명 입장해서 클리어
      */
     @Column
-    @JsonProperty("clearableBoss")
     private String clearableBoss;
 
     @OneToOne(mappedBy = "character")
     @PrimaryKeyJoinColumn
-    @JsonProperty("questId")
     private TQuestOfCharacter quest;
+
+    /**
+     * 기본 생성자
+     */
+    public TCharacter() { }
 
     /**
      * setter
@@ -160,46 +150,5 @@ public class TCharacter implements Serializable {
             bossMap.put(bossId, person);
         }
         return bossMap;
-    }
-
-
-    /**
-     * 기본 생성자
-     */
-    public TCharacter(){ }
-
-    /**
-     * SOAP API RESPONSE 역직렬화 생성자
-     * @param avatarImgUrl
-     * @param worldName
-     * @param characterName
-     * @param lev
-     * @param exp
-     * @param jobDetail
-     * @param pop
-     * @param totRank
-     * @param worldRank
-     */
-    @JsonCreator
-    public TCharacter(
-            @JsonProperty("AvatarImgURL") String avatarImgUrl,
-            @JsonProperty("WorldName") String worldName,
-            @JsonProperty("CharacterName") String characterName,
-            @JsonProperty("Lev") Integer lev,
-            @JsonProperty("Exp") Long exp,
-            @JsonProperty("JobDetail") String jobDetail,
-            @JsonProperty("Pop") Integer pop,
-            @JsonProperty("TotRank") Integer totRank,
-            @JsonProperty("WorldRank") Integer worldRank
-    ){
-        this.avatarImgUrl = avatarImgUrl;
-        this.worldName = worldName;
-        this.characterName = characterName;
-        this.lev = lev;
-        this.exp = exp;
-        this.job = JobInfo.getJobInfoByJobDetail(jobDetail);
-        this.pop = pop;
-        this.totRank = totRank;
-        this.worldRank = worldRank;
     }
 }

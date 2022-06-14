@@ -1,6 +1,6 @@
 package dol.example.dto.todo;
 
-import dol.example.common.TodoInfo;
+import dol.example.common.info.TodoInfo;
 import lombok.Getter;
 
 import java.io.Serializable;

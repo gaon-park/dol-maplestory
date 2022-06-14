@@ -1,6 +1,6 @@
 package dol.example.domain;
 
-import dol.example.common.DifficultyOfArcaneMinigame1;
+import dol.example.common.info.DifficultyOfArcaneMinigame1;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 

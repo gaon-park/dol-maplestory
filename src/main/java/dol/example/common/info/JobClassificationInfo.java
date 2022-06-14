@@ -1,4 +1,4 @@
-package dol.example.common;
+package dol.example.common.info;
 
 import lombok.Getter;
 

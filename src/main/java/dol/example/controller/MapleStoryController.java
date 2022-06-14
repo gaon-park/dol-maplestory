@@ -5,7 +5,12 @@ import dol.example.util.JsonUtil;
 import dol.example.util.JsoupUtil;
 import dol.example.util.SoapUtil;
 import lombok.AllArgsConstructor;
+import org.json.JSONObject;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +53,7 @@ public class MapleStoryController {
                 tCharacterList.add(tempCharacter);
             }
         }
+
         return tCharacterList;
     }
 

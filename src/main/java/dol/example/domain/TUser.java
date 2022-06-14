@@ -23,15 +23,21 @@ public class TUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
-    @ColumnTransformer(
-            read = "decrypt(password)",
-            write = "encrypt(nvl(?, 'null'))"
-    )
-    private String password;
+    /**
+     * login email
+     * login은 email과 대표캐릭터 닉네임으로
+     */
+    @Column(unique = true, nullable = false)
+    private String email;
 
     /**
-     * 대표 캐릭터 id
+     * 대표 캐릭터 닉네임
+     */
+    @Column(nullable = false)
+    private String representativeCharacterName;
+
+    /**
+     * 대표 캐릭터 id(인게임 닉네임 변경이 가능하기 때문에 검색용)
      */
     @Column
     private Long representativeCharacterId;
