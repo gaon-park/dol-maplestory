@@ -2,10 +2,13 @@ package dol.example.common.info;
 
 import lombok.Getter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 public enum WorldInfo {
 
-    // basic
+    // normal
     ALL_0(0, "전체월드", false),
     WORLD_3(3, "오로라", false),
     WORLD_4(4, "레드", false),
@@ -47,5 +50,22 @@ public enum WorldInfo {
         }
 
         return null;
+    }
+
+    static public List<Integer> getNormalWorldIdList(){
+        List<Integer> list = new ArrayList<>();
+        for(WorldInfo worldInfo : WorldInfo.values()){
+            if(worldInfo.isReboot){
+                list.add(worldInfo.getId());
+            }
+        }
+        return list;
+    }
+
+    static public List<Integer> getRebootWorldIdList(){
+        List<Integer> list = new ArrayList<>();
+        list.add(WORLD_1.getId());
+        list.add(WORLD_2.getId());
+        return list;
     }
 }
