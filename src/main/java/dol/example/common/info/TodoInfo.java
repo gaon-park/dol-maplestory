@@ -32,6 +32,8 @@ public enum TodoInfo {
 
     AUTHENTIC_QUEST1(110, "호텔 아르크스(일일 퀘스트)", true, false),
 
+    AUTHENTIC_QUEST2(120, "오디움(일일 퀘스트)", true, false),
+
     HAVEN0(1000, "기계무덤(주간 퀘스트)", false, true),
     DARK_WORLD_TREE0(1001, "타락한 세계수(주간 퀘스트)", false, true),
 
