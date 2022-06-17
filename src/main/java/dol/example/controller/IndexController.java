@@ -19,6 +19,6 @@ public class IndexController {
 //        System.out.println("TEST SOAP API");
 //        SoapUtil soapUtil = new SoapUtil();
 //        soapUtil.getCharacterInfoByAccountID();
-        return null;
+        return ResponseEntity.ok("ok");
     }
 }
