@@ -4,6 +4,7 @@ import dol.example.common.exception.advice.APIException;
 import dol.example.common.info.ExceptionInfo;
 import dol.example.domain.TCharacter;
 import dol.example.domain.TUnion;
+import dol.example.domain.TUser;
 import dol.example.service.TCharacterService;
 import dol.example.service.TUnionService;
 import dol.example.service.TUserService;
@@ -31,11 +32,6 @@ public class CharacterController {
     @Autowired
     TUnionService tUnionService;
 
-    @RequestMapping(value = "/info/byDolMaplestoryId/{id}", method = RequestMethod.GET)
-    public void getCharacterInfoByDolMaplestoryId(){
-
-    }
-
     @RequestMapping(value = "/info/{characterName}", method = RequestMethod.GET)
     public ResponseEntity<TCharacter> getCharacterInfo(@PathVariable String characterName){
         JsoupUtil jsoupUtil = new JsoupUtil();
@@ -44,7 +40,7 @@ public class CharacterController {
     }
 
     @RequestMapping(value = "/list", produces = "application/json; charset=utf8", method = RequestMethod.POST)
-    public void postCharacterInfo(@RequestBody Map<String, Object> request) {
+    public ResponseEntity<TUser> postCharacterInfo(@RequestBody Map<String, Object> request) {
         List<TCharacter> requestCharacters = (List<TCharacter>) request.get("characters");
         Long userId = (Long) request.get("userId");
         if(requestCharacters == null || userId == null){
@@ -60,5 +56,7 @@ public class CharacterController {
         tUnion.setWorldName(savedList.get(0).getWorldName());
         tUnion.setUser(savedList.get(0).getUser());
         tUnionService.saveTUnion(tUnion);
+
+        return ResponseEntity.ok(tUserService.findTUser(savedList.get(0).getUser().getId()));
     }
 }
