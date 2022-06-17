@@ -32,15 +32,19 @@ public class CharacterController {
     @Autowired
     TUnionService tUnionService;
 
-    @RequestMapping(value = "/info/{characterName}", method = RequestMethod.GET)
-    public ResponseEntity<TCharacter> getCharacterInfo(@PathVariable String characterName){
+    @RequestMapping(value = "/load/{characterName}", method = RequestMethod.GET)
+    public ResponseEntity<TCharacter> getCharacterFromMaplestory(@PathVariable String characterName){
         JsoupUtil jsoupUtil = new JsoupUtil();
-        TCharacter tCharacter = jsoupUtil.getCharacterInfoFromMaplestory(characterName);
-        return ResponseEntity.ok(tCharacter);
+        return ResponseEntity.ok(jsoupUtil.getCharacterInfoFromMaplestory(characterName));
+    }
+
+    @RequestMapping(value = "/{characterId}", method = RequestMethod.GET)
+    public ResponseEntity<TCharacter> getCharacterInfo(@PathVariable Long characterId){
+        return ResponseEntity.ok(tCharacterService.findTCharacterById(characterId));
     }
 
     @RequestMapping(value = "/list", produces = "application/json; charset=utf8", method = RequestMethod.POST)
-    public ResponseEntity<TUser> postCharacterInfo(@RequestBody Map<String, Object> request) {
+    public ResponseEntity<TUser> postCharacter(@RequestBody Map<String, Object> request) {
         List<TCharacter> requestCharacters = (List<TCharacter>) request.get("characters");
         Long userId = (Long) request.get("userId");
         if(requestCharacters == null || userId == null){

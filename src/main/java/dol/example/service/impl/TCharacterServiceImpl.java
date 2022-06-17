@@ -38,7 +38,9 @@ public class TCharacterServiceImpl implements TCharacterService {
     }
 
     @Override
-    public TCharacter saveTCharacter(TCharacter tCharacter) {
-        return tCharacterRepository.save(tCharacter);
+    public TCharacter findTCharacterById(Long id) {
+        return tCharacterRepository.findById(id).orElseThrow(() -> new APIException(ExceptionInfo.NOT_FOUND_EXCEPTION));
     }
+
+
 }
