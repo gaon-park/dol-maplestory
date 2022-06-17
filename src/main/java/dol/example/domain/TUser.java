@@ -27,8 +27,13 @@ public class TUser implements Serializable {
     private Long id;
 
     /**
-     * login email
-     * login은 email과 대표캐릭터 닉네임으로
+     * 카카오 메시지 연동을 고려 중, 일단 추가
+     */
+    @Column(unique = true)
+    private String kakaoEmail;
+
+    /**
+     * email
      */
     @Column(unique = true, nullable = false)
     private String email;
@@ -36,7 +41,7 @@ public class TUser implements Serializable {
     /**
      * 대표 캐릭터 닉네임
      */
-    @Column(nullable = false)
+    @Column
     private String representativeCharacterName;
 
     /**
@@ -61,5 +66,10 @@ public class TUser implements Serializable {
     public void addTCharacter(TCharacter tCharacter){
         tCharacterList.add(tCharacter);
         tCharacter.setUser(this);
+    }
+
+    public void addTUnionList(TUnion tUnion){
+        tUnionList.add(tUnion);
+        tUnion.setUser(this);
     }
 }

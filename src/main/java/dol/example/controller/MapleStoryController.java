@@ -5,12 +5,8 @@ import dol.example.util.JsonUtil;
 import dol.example.util.JsoupUtil;
 import dol.example.util.SoapUtil;
 import lombok.AllArgsConstructor;
-import org.json.JSONObject;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,14 +27,14 @@ public class MapleStoryController {
      * @return
      */
     @RequestMapping(value = "/representative-character/{accountId}", method = RequestMethod.GET)
-    public TCharacter getCharacterInfo(@PathVariable("accountId") String accountId){
+    public ResponseEntity getCharacterInfo(@PathVariable("accountId") String accountId){
         String info = new SoapUtil().getCharacterInfoByAccountID(Long.valueOf(accountId));
         JsonUtil jsonUtil = new JsonUtil();
-        return jsonUtil.convertJsonToTCharacter(jsonUtil.convertXmlToJson(info));
+        return ResponseEntity.ok(jsonUtil.convertJsonToTCharacter(jsonUtil.convertXmlToJson(info)));
     }
 
     @RequestMapping(value = "/character/list", method = RequestMethod.GET)
-    public List<TCharacter> getCharacterList(@RequestBody String siteCopyString){
+    public ResponseEntity getCharacterList(@RequestBody String siteCopyString){
         // 캐릭터 이름 추출
         WorldCharacterPair worldCharacterPair = getCharacterNameListFromSiteCopyString(siteCopyString);
         String worldName = worldCharacterPair.worldName;
@@ -54,7 +50,7 @@ public class MapleStoryController {
             }
         }
 
-        return tCharacterList;
+        return ResponseEntity.ok(tCharacterList);
     }
 
     /**

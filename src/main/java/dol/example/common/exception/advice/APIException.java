@@ -3,8 +3,10 @@ package dol.example.common.exception.advice;
 import dol.example.common.info.ExceptionInfo;
 import lombok.Getter;
 
+import java.util.function.Supplier;
+
 @Getter
-public class APIException extends RuntimeException{
+public class APIException extends RuntimeException {
     private ExceptionInfo apiExceptionInfo;
     private String detail;
 

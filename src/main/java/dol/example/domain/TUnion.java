@@ -30,7 +30,7 @@ public class TUnion {
             CascadeType.MERGE,
             CascadeType.REFRESH,
             CascadeType.DETACH})
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private TUser user;
 
     /**
@@ -51,10 +51,10 @@ public class TUnion {
      * 유니온에 소속된 캐릭터 id를 리스트 형태로 가져옴
      * @return
      */
-    public List<Integer> getCharacterIdList(){
+    public List<Long> getCharacterIdList(){
         return Arrays.stream(
                 characterIds.split("/"))
-                .map(i -> Integer.parseInt(i))
+                .map(i -> Long.parseLong(i))
                 .toList();
     }
 
@@ -62,9 +62,9 @@ public class TUnion {
      * setter
      * @param idList
      */
-    public void setCharacterIds(List<Integer> idList){
+    public void setCharacterIdList(List<Long> idList){
         this.characterIds = String.join("/", idList.stream()
-                .map(i -> Integer.toString(i))
+                .map(i -> Long.toString(i))
                 .toList());
     }
 }

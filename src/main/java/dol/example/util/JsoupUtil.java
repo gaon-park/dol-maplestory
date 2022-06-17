@@ -12,6 +12,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.List;
 
 public class JsoupUtil {
 
@@ -55,14 +56,14 @@ public class JsoupUtil {
         return tCharacter;
     }
 
-    private TCharacter getCharacterInfoFromTotRank(String worldName, String characterName){
+    private TCharacter getCharacterInfoFromTotRank(String worldName, String characterName) {
         String totRankingURL = "https://maplestory.nexon.com/Ranking/World/Total"
                 + "?c=" + characterName
                 + "&w=" + ((worldName.contains("리부트")) ? Integer.toString(WorldInfo.ALL_1.getId()) : Integer.toString(WorldInfo.ALL_0.getId()));
 
         Element element = getCharacterInfoElementFromURL(totRankingURL);
 
-        if(element == null){
+        if (element == null) {
             throw new APIException(ExceptionInfo.NOT_FOUND_EXCEPTION);
         }
 
@@ -87,47 +88,26 @@ public class JsoupUtil {
         tCharacter.setPop(Integer.parseInt(elements.get(4).text()));
         tCharacter.setGuild(elements.get(5).text());
 
-        // world
-        tCharacter.setWorldName(worldName);
-
+        // world name
+        if (worldName.equals(WorldInfo.ALL_0.getName()) || worldName.equals(WorldInfo.ALL_1.getName())) {
+            String src = element.select("td.left").select("dl dt img").attr("src");
+            List<WorldInfo> worldInfoList = (worldName.contains("리부트")) ? WorldInfo.getRebootWorldInfoList() : WorldInfo.getNormalWorldInfoList();
+            for (WorldInfo worldinfo : worldInfoList) {
+                if (src.endsWith(worldinfo.getIconURL())) {
+                    tCharacter.setWorldName(worldinfo.getName());
+                    break;
+                }
+            }
+        } else {
+            tCharacter.setWorldName(worldName);
+        }
         return tCharacter;
     }
 
     private TCharacter setWorldRank(TCharacter tCharacter){
-        // 전체 월드로 받은 경우
-        if(tCharacter.getWorldName().equals(WorldInfo.ALL_0.getName())){
-            for(Integer worldId : WorldInfo.getNormalWorldIdList()){
-                try {
-                    tCharacter = searchWorldRank(tCharacter, worldId);
-                    // 성공했다는 것은 곧, 월드명을 찾았다는 것을 의미하므로
-                    break;
-                } catch (APIException e){
-                    continue;
-                }
-            }
-        } else if(tCharacter.getWorldName().equals(WorldInfo.ALL_1.getName())){
-            for(Integer worldId : WorldInfo.getRebootWorldIdList()){
-                try {
-                    tCharacter = searchWorldRank(tCharacter, worldId);
-                    // 성공했다는 것은 곧, 월드명을 찾았다는 것을 의미하므로
-                    break;
-                } catch (APIException e){
-                    continue;
-                }
-            }
-        }
-        // 이미 상세 월드를 알고 있는 경우
-        else{
-            tCharacter = searchWorldRank(tCharacter, WorldInfo.getWorldInfoIdByWorldName(tCharacter.getWorldName()));
-        }
-
-        return tCharacter;
-    }
-
-    private TCharacter searchWorldRank(TCharacter tCharacter, Integer worldId){
         String worldRankURL = "https://maplestory.nexon.com/Ranking/World/Total"
                 + "?c=" + tCharacter.getCharacterName()
-                + "&w=" + worldId;
+                + "&w=" + WorldInfo.getWorldInfoIdByWorldName(tCharacter.getWorldName());
 
         Element element = getCharacterInfoElementFromURL(worldRankURL);
 
@@ -148,6 +128,7 @@ public class JsoupUtil {
 
         return tCharacter;
     }
+
 
     private Element getCharacterInfoElementFromURL(String URL){
         Element element = null;

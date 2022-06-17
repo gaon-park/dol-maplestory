@@ -60,13 +60,18 @@ public enum UnionInfo {
         this.stepLev = stepLev;
     }
 
-    public UnionInfo getUnionInfo(List<TCharacter> list){
+    static public UnionInfo getUnionInfo(List<TCharacter> list){
         List<Integer> level = list.stream()
                 .map(o -> o.getLev())
                 .filter(o -> (o >= 60))
                 .toList();
 
-        int sumOfLev = level.stream().reduce(0, Integer::sum);
+        // int sumOfLev = level.stream().reduce(0, Integer::sum);
+        // union 적용 캐릭터 수: 42
+        int sumOfLev = 0;
+        for(int i = 0; i < 42; i++){
+            sumOfLev += level.get(i);
+        }
         boolean formerOf5 = level.stream()
                 .filter(o -> (o >= 200))
                 .toList().size() > 0 ? true : false;
@@ -96,7 +101,7 @@ public enum UnionInfo {
         return result;
     }
 
-    public UnionInfo getFrontUnionInfo(UnionInfo unionInfo){
+    static public UnionInfo getFrontUnionInfo(UnionInfo unionInfo){
         for(UnionInfo info : UnionInfo.values()){
             if(unionInfo.step.equals(info.step + 1)){
                 return info;
@@ -107,7 +112,7 @@ public enum UnionInfo {
         return null;
     }
 
-    public UnionInfo getNextUnionInfo(UnionInfo unionInfo){
+    static public UnionInfo getNextUnionInfo(UnionInfo unionInfo){
         for(UnionInfo info : UnionInfo.values()){
             if(unionInfo.step.equals(info.step - 1)){
                 return info;
