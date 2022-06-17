@@ -85,11 +85,16 @@ public enum BossInfo {
     // 그란디스
     SEREN_NORMAL(300, "선택받은 세렌", "노멀", false, true, false, 196904752),
     SEREN_HARD(301, "선택받은 세렌", "하드", false, true, false, 267825621),
+    // TODO set seren extreme mode stone price
+    SEREN_EXTREME(301, "선택받은 세렌", "하드", false, true, false, 1),
 
-    KALOS(302, "감시자 칼로스", "노멀", false, true, false, 300000000),
+    KALOS(310, "감시자 칼로스", "노멀", false, true, false, 300000000),
 
     // 초월자
-    BLACK_MAGE(400, "검은 마법사", "노멀", false, false, true, 1418809857);
+    BLACK_MAGE_NORMAL(400, "검은 마법사", "노멀", false, false, true, 1418809857),
+    // TODO set black mage extreme mode stone price
+    BLACK_MAGE_EXTREME(401, "검은 마법사", "노멀", false, false, true, 1)
+    ;
 
     private Integer id;
     private String name;
