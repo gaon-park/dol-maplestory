@@ -1,5 +1,7 @@
 package dol.example.service.impl;
 
+import dol.example.common.exception.advice.APIException;
+import dol.example.common.info.ExceptionInfo;
 import dol.example.domain.TQuestOfCharacter;
 import dol.example.dto.todo.Todo;
 import dol.example.repository.TCharacterRepository;
@@ -21,13 +23,13 @@ public class TQuestOfCharacterServiceImpl implements TQuestOfCharacterService {
     private TQuestOfCharacterRepository tQuestOfCharacterRepository;
 
     @Override
-    public void findQuestOfCharacter(Long characterId) throws NotFoundException {
-        TQuestOfCharacter tQuestOfCharacter = tQuestOfCharacterRepository.findById(characterId).orElseThrow(() -> new NotFoundException("존재하지 않는 캐릭터 id"));
+    public TQuestOfCharacter findQuestOfCharacter(Long characterId) {
+        return tQuestOfCharacterRepository.findById(characterId).orElseThrow(() -> new APIException(ExceptionInfo.INVALID_REQUEST_EXCEPTION, "존재하지 않는 캐릭터 id"));
     }
 
     @Override
-    public TQuestOfCharacter saveQuestOfCharacter(Long characterId, List<Todo> todoDTOList) throws NotFoundException {
-        tCharacterRepository.findById(characterId).orElseThrow(() -> new NotFoundException("존재하지 않는 캐릭터 id " + characterId));
+    public TQuestOfCharacter saveQuestOfCharacter(Long characterId, List<Todo> todoDTOList) {
+        tCharacterRepository.findById(characterId).orElseThrow(() -> new APIException(ExceptionInfo.INVALID_REQUEST_EXCEPTION, "존재하지 않는 캐릭터 id " + characterId));
 
         TQuestOfCharacter tQuestOfCharacter = convert(characterId, todoDTOList);
         return tQuestOfCharacterRepository.save(tQuestOfCharacter);
@@ -57,6 +59,7 @@ public class TQuestOfCharacterServiceImpl implements TQuestOfCharacterService {
 
                 case AUTHENTIC_QUEST0 -> tQuestOfCharacter.setAuthenticQuest0(true);
                 case AUTHENTIC_QUEST1 -> tQuestOfCharacter.setAuthenticQuest1(true);
+                case AUTHENTIC_QUEST2 -> tQuestOfCharacter.setAuthenticQuest2(true);
 
                 case HAVEN0 -> tQuestOfCharacter.setHaven0(true);
                 case DARK_WORLD_TREE0 -> tQuestOfCharacter.setDarkWorldTree0(true);

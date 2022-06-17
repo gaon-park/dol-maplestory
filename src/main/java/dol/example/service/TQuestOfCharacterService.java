@@ -7,6 +7,6 @@ import javassist.NotFoundException;
 import java.util.List;
 
 public interface TQuestOfCharacterService {
-    public void findQuestOfCharacter(Long characterId) throws NotFoundException;
-    public TQuestOfCharacter saveQuestOfCharacter(Long characterId, List<Todo> todoDtoList) throws NotFoundException;
+    TQuestOfCharacter findQuestOfCharacter(Long characterId) throws NotFoundException;
+    TQuestOfCharacter saveQuestOfCharacter(Long characterId, List<Todo> todoDtoList) throws NotFoundException;
 }

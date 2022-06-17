@@ -78,6 +78,9 @@ public class TQuestOfCharacter {
     private Boolean authenticQuest1;
 
     @ColumnDefault("false")
+    private Boolean authenticQuest2;
+
+    @ColumnDefault("false")
     private Boolean haven0;
 
     @ColumnDefault("false")
