@@ -2,15 +2,11 @@ package dol.example.service.impl;
 
 import dol.example.common.exception.advice.APIException;
 import dol.example.common.info.ExceptionInfo;
-import dol.example.domain.TCharacter;
 import dol.example.domain.TUser;
 import dol.example.repository.TUserRepository;
 import dol.example.service.TUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class TUserServiceImpl implements TUserService {
@@ -30,8 +26,7 @@ public class TUserServiceImpl implements TUserService {
 
     @Override
     public TUser saveTUser(TUser tUser) {
-        if(tUser.getEmail() == null || tUser.getEmail().isEmpty()
-                || tUser.getRepresentativeCharacterName() == null || tUser.getRepresentativeCharacterName().isEmpty()){
+        if(tUser.getEmail() == null || tUser.getEmail().isEmpty()){
             throw new APIException(ExceptionInfo.INVALID_REQUEST_EXCEPTION);
         }
 

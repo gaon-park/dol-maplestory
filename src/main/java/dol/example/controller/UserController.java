@@ -14,6 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @CrossOrigin
 @AllArgsConstructor
 @RestController
@@ -26,28 +28,23 @@ public class UserController {
     @Autowired
     TCharacterService tCharacterService;
 
-//    @RequestMapping(value = "", method = RequestMethod.GET)
-//    public ResponseEntity<TUser> read(@RequestBody Map<String, String> request){
-//        Long userId = Long.parseLong(request.get("userId"));
-//        String email = request.get("email");
-//
-//        if(userId == null || email == null){
-//
-//        }
-//
-//        try {
-//            return tUserService.findTUser(userId);
-//        } catch (NotFoundException e) {
-//            return HttpStatus.NOT_FOUND;
-//        }
-//    }
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public ResponseEntity<TUser> read(@RequestBody Map<String, String> request){
+        String email = request.get("email");
 
-    @RequestMapping(value = "", produces = "application/json; charset=utf8", method = RequestMethod.POST)
+        if(email == null){
+            throw new APIException(ExceptionInfo.INVALID_REQUEST_EXCEPTION);
+        }
+
+        return ResponseEntity.ok(tUserService.findTUser(email));
+    }
+
+    @RequestMapping(value = "/with-maple", produces = "application/json; charset=utf8", method = RequestMethod.POST)
     public ResponseEntity<TUser> regist(@RequestBody TUser request) {
-        String email = request.getEmail();
-        String representativeCharacterName = request.getRepresentativeCharacterName();
+        chkLogical(request);
 
-        if(email.isEmpty() || representativeCharacterName.isEmpty()){
+        String representativeCharacterName = request.getRepresentativeCharacterName();
+        if(representativeCharacterName.isEmpty()){
             throw new APIException(ExceptionInfo.INVALID_REQUEST_EXCEPTION);
         }
 
@@ -69,5 +66,20 @@ public class UserController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(tUserService.saveTUser(request));
+    }
+
+    @RequestMapping(value = "", produces = "application/json; charset=utf8", method = RequestMethod.POST)
+    public ResponseEntity<TUser> onlyDolRegist(@RequestBody TUser request){
+        chkLogical(request);
+
+        return ResponseEntity.ok().body(tUserService.saveTUser(request));
+    }
+
+    private void chkLogical(TUser request){
+        String email = request.getEmail();
+
+        if(email.isEmpty()){
+            throw new APIException(ExceptionInfo.INVALID_REQUEST_EXCEPTION);
+        }
     }
 }

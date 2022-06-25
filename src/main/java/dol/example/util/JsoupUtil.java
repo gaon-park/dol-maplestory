@@ -10,11 +10,15 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.List;
 
 public class JsoupUtil {
+
+    private static final Logger logger = LoggerFactory.getLogger(JsoupUtil.class);
 
     /**
      * 월드명을 모르는 경우
@@ -24,6 +28,7 @@ public class JsoupUtil {
     public TCharacter getCharacterInfoFromMaplestory(String characterName){
         TCharacter tCharacter = null;
         // 일반 월드 우선 검색
+        logger.info("characterName: [" + characterName + "] 검색 시작");
         try {
             tCharacter = getCharacterInfoFromTotRank(WorldInfo.ALL_0.getName(), characterName);
         } catch (APIException e1) {
@@ -32,8 +37,10 @@ public class JsoupUtil {
                 tCharacter = getCharacterInfoFromTotRank(WorldInfo.ALL_1.getName(), characterName);
             } catch (APIException e2) {
                 // 검색 실패. 존재하지 않는 캐릭터
+                logger.info("존재하지 않는 캐릭터");
             }
         }
+        logger.info("characterName: [" + characterName + "] 검색 성공");
 
         if(tCharacter != null){
             tCharacter = setWorldRank(tCharacter);

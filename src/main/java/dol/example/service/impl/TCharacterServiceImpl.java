@@ -11,8 +11,11 @@ import dol.example.repository.TUserRepository;
 import dol.example.service.TCharacterService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,20 +24,16 @@ public class TCharacterServiceImpl implements TCharacterService {
     @Autowired
     TCharacterRepository tCharacterRepository;
 
-    @Autowired
-    TUserRepository tUserRepository;
-
-    @Autowired
-    TUnionRepository tUnionRepository;
-
     @Override
-    public List<TCharacter> saveTCharacterList(Long userId, List<TCharacter> tCharacterList) throws APIException {
-        TUser tUser = tUserRepository.findById(userId).orElseThrow(() -> new APIException(ExceptionInfo.INVALID_REQUEST_EXCEPTION, "존재하지 않는 유저"));
+    public List<TCharacter> saveTCharacterList(List<TCharacter> tCharacterList){
+        List<TCharacter> result = new ArrayList<>();
         for(TCharacter tCharacter : tCharacterList){
-            tCharacter.setUser(tUser);
+            if(tCharacterRepository.findByUserIdAndCharacterName(tCharacter.getUser().getId(), tCharacter.getCharacterName()).isEmpty()){
+                result.add(tCharacterRepository.save(tCharacter));
+            }
         }
 
-        return tCharacterRepository.saveAll(tCharacterList);
+        return result;
     }
 
     @Override

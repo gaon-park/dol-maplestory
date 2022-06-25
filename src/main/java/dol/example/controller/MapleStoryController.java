@@ -1,15 +1,22 @@
 package dol.example.controller;
 
+import dol.example.common.exception.advice.APIException;
 import dol.example.domain.TCharacter;
+import dol.example.dto.response.SearchCharacterListResponse;
 import dol.example.util.JsonUtil;
 import dol.example.util.JsoupUtil;
 import dol.example.util.SoapUtil;
 import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @CrossOrigin
 @AllArgsConstructor
@@ -19,6 +26,8 @@ import java.util.List;
  * maplestory soap api/공식 홈페이지 정보를 이용해서 데이터를 가져오는 api
  */
 public class MapleStoryController {
+
+    private static final Logger logger = LoggerFactory.getLogger(MapleStoryController.class);
 
     /**
      * 대표 캐릭터의 정보를 취득
@@ -34,23 +43,33 @@ public class MapleStoryController {
     }
 
     @RequestMapping(value = "/character/list", method = RequestMethod.GET)
-    public ResponseEntity getCharacterList(@RequestBody String siteCopyString){
+    public ResponseEntity<SearchCharacterListResponse> getCharacterList(@RequestBody String siteCopyString){
         // 캐릭터 이름 추출
+        logger.info("캐릭터 이름 추출");
         WorldCharacterPair worldCharacterPair = getCharacterNameListFromSiteCopyString(siteCopyString);
         String worldName = worldCharacterPair.worldName;
         List<String> characterNameList = worldCharacterPair.characterNameList;
 
         // 랭킹 페이지에서 캐릭터 검색
+        logger.info("랭킹 페이지에서 캐릭터 검색");
         List<TCharacter> tCharacterList = new ArrayList<>();
+        List<String> notFoundCharacterList = new ArrayList<>();
         JsoupUtil jsoupUtil = new JsoupUtil();
         for(String characterName : characterNameList){
-            TCharacter tempCharacter = jsoupUtil.getCharacterInfoFromMaplestory(worldName, characterName);
-            if(tempCharacter != null){
-                tCharacterList.add(tempCharacter);
+            logger.info(characterName + " 검색");
+            try {
+                TCharacter searchCharacter = jsoupUtil.getCharacterInfoFromMaplestory(worldName, characterName);
+                tCharacterList.add(searchCharacter);
+            } catch(APIException e){
+                notFoundCharacterList.add(characterName);
             }
         }
 
-        return ResponseEntity.ok(tCharacterList);
+        SearchCharacterListResponse response = new SearchCharacterListResponse();
+        response.setCharacterList(tCharacterList);
+        response.setNotFoundCharacterList(notFoundCharacterList);
+
+        return ResponseEntity.ok(response);
     }
 
     /**
@@ -98,8 +117,8 @@ public class MapleStoryController {
         for(int i = 0; i < characterWorldCharacterStr.length(); i++){
             String s = Character.toString(characterWorldCharacterStr.charAt(i));
             temp += s;
-            if(temp.contains(worldName)){
-                String innerTemp = temp.replace(worldName, "");
+            if(temp.endsWith(worldName)){
+                String innerTemp = temp.substring(0, temp.length() - worldName.length());
 
                 if(innerTemp.length() > 0 &&
                         (innerTemp + characterWorldCharacterStr.substring(i + 1, i + innerTemp.length() + 1)).equals(innerTemp + innerTemp)){
