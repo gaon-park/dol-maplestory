@@ -1,112 +1,56 @@
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('자쿰', '이지', 'true', 'false', 'false', 119835);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('자쿰', '노멀', 'true', 'false', 'false', 366997);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('자쿰', '카오스', 'false', 'true', 'false', 9741285);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('혼테일', '이지', 'true', 'false', 'false', 528474);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('혼테일', '노멀', 'true', 'false', 'false', 606666);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('혼테일', '카오스', 'true', 'false', 'false', 810086);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('핑크빈', '노멀', 'true', 'false', 'false', 841544);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('핑크빈', '카오스', 'false', 'true', 'false', 7923110);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('카웅', '노멀', 'true', 'false', 'false', 748970);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('시그너스', '이지', 'false', 'true', 'false', 5496394);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('시그너스', '노멀', 'false', 'true', 'false', 9039130);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('파풀라투스', '이지', 'true', 'false', 'false', 410135);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('파풀라투스', '노멀', 'true', 'false', 'false', 1596506);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('파풀라투스', '카오스', 'false', 'true', 'false', 26725593);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('가디언 엔젤 슬라임', '노멀', 'false', 'true', 'false', 46935874);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('가디언 엔젤 슬라임', '카오스', 'false', 'true', 'false', 155492141);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('더스크', '노멀', 'false', 'true', 'false', 71054562);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('더스크', '카오스', 'false', 'true', 'false', 160173752);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('듄켈', '노멀', 'false', 'true', 'false', 76601412);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('듄켈', '하드', 'false', 'true', 'false', 168609280);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('반반', '노멀', 'true', 'false', 'false', 580003);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('반반', '카오스', 'false', 'true', 'false', 9818154);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('피에르', '노멀', 'true', 'false', 'false', 580003);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('피에르', '카오스', 'false', 'true', 'false', 98389322);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('블러디퀸', '노멀', 'true', 'false', 'false', 580003);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('블러디퀸', '카오스', 'false', 'true', 'false', 9806780);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('벨룸', '노멀', 'true', 'false', 'false', 580003);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('벨룸', '카오스', 'false', 'true', 'false', 12590202);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('힐라', '노멀', 'true', 'false', 'false', 479343);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('힐라', '하드', 'false', 'true', 'false', 6936489);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('진 힐라', '노멀', 'false', 'true', 'false', 148112376);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('진 힐라', '하드', 'false', 'true', 'false', 190159452);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('반 레온', '이지', 'true', 'false', 'false', 633927);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('반 레온', '노멀', 'true', 'false', 'false', 873601);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('반 레온', '하드', 'true', 'false', 'false', 1467984);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('아카이럼', '이지', 'true', 'false', 'false', 690246);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('아카이럼', '노멀', 'true', 'false', 'false', 1510227);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('매그너스', '이지', 'true', 'false', 'false', 432605);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('매그너스', '노멀', 'true', 'false', 'false', 1553066);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('매그너스', '하드', 'false', 'true', 'false', 11579023);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('스우', '노멀', 'false', 'true', 'false', 33942566);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('스우', '하드', 'false', 'true', 'false', 118294192);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('데미안', '노멀', 'false', 'true', 'false', 35517853);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('데미안', '하드', 'false', 'true', 'false', 112480613);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('루시드', '이지', 'false', 'true', 'false', 48058319);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('루시드', '노멀', 'false', 'true', 'false', 57505626);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('루시드', '하드', 'false', 'true', 'false', 131095655);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('윌', '이지', 'false', 'true', 'false', 52139127);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('윌', '노멀', 'false', 'true', 'false', 66311463);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('윌', '하드', 'false', 'true', 'false', 145038483);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('선택받은 세렌', '노멀', 'false', 'true', 'false', 196904752);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('선택받은 세렌', '하드', 'false', 'true', 'false', 267825621);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('선택받은 세렌', '익스트림', 'false', 'true', 'false', 3000000000);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('감시자 칼로스', '노멀', 'false', 'true', 'false', 300000000);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('검은 마법사', '노멀', 'false', 'false', 'true', 1418809857);
-INSERT INTO t_boss(name, difficulty, is_daily_boss, is_weekly_boss, is_monthly_boss, stone_price)
-VALUES ('검은 마법사', '익스트림', 'false', 'false', 'true', 3000000000);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (1,'이지',1,0,0,'자쿰',119835);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (2,'노멀',1,0,0,'자쿰',366997);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (3,'카오스',0,0,1,'자쿰',9741285);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (4,'이지',1,0,0,'혼테일',528474);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (5,'노멀',1,0,0,'혼테일',606666);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (6,'카오스',1,0,0,'혼테일',810086);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (7,'노멀',1,0,0,'핑크빈',841544);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (8,'카오스',0,0,1,'핑크빈',7923110);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (9,'노멀',1,0,0,'카웅',748970);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (10,'이지',0,0,1,'시그너스',5496394);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (11,'노멀',0,0,1,'시그너스',9039130);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (12,'이지',1,0,0,'파풀라투스',410135);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (13,'노멀',1,0,0,'파풀라투스',1596506);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (14,'카오스',0,0,1,'파풀라투스',26725593);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (15,'노멀',0,0,1,'가디언 엔젤 슬라임',46935874);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (16,'카오스',0,0,1,'가디언 엔젤 슬라임',155492141);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (17,'노멀',0,0,1,'더스크',71054562);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (18,'카오스',0,0,1,'더스크',160173752);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (19,'노멀',0,0,1,'듄켈',76601412);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (20,'하드',0,0,1,'듄켈',168609280);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (21,'노멀',1,0,0,'반반',580003);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (22,'카오스',0,0,1,'반반',9818154);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (23,'노멀',1,0,0,'피에르',580003);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (24,'카오스',0,0,1,'피에르',98389322);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (25,'노멀',1,0,0,'블러디퀸',580003);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (26,'카오스',0,0,1,'블러디퀸',9806780);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (27,'노멀',1,0,0,'벨룸',580003);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (28,'카오스',0,0,1,'벨룸',12590202);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (29,'노멀',1,0,0,'힐라',479343);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (30,'하드',0,0,1,'힐라',6936489);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (31,'노멀',0,0,1,'진 힐라',148112376);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (32,'하드',0,0,1,'진 힐라',190159452);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (33,'이지',1,0,0,'반 레온',633927);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (34,'노멀',1,0,0,'반 레온',873601);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (35,'하드',1,0,0,'반 레온',1467984);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (36,'이지',1,0,0,'아카이럼',690246);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (37,'노멀',1,0,0,'아카이럼',1510227);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (38,'이지',1,0,0,'매그너스',432605);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (39,'노멀',1,0,0,'매그너스',1553066);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (40,'하드',0,0,1,'매그너스',11579023);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (41,'노멀',0,0,1,'스우',33942566);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (42,'하드',0,0,1,'스우',118294192);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (43,'노멀',0,0,1,'데미안',35517853);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (44,'하드',0,0,1,'데미안',112480613);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (45,'이지',0,0,1,'루시드',48058319);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (46,'노멀',0,0,1,'루시드',57505626);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (47,'하드',0,0,1,'루시드',131095655);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (48,'이지',0,0,1,'윌',52139127);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (49,'노멀',0,0,1,'윌',66311463);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (50,'하드',0,0,1,'윌',145038483);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (51,'노멀',0,0,1,'선택받은 세렌',196904752);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (52,'하드',0,0,1,'선택받은 세렌',267825621);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (53,'익스트림',0,0,1,'선택받은 세렌',2147483647);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (54,'노멀',0,0,1,'감시자 칼로스',300000000);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (55,'노멀',0,1,0,'검은 마법사',1418809857);
+INSERT INTO t_boss(id,difficulty,is_daily_boss,is_monthly_boss,is_weekly_boss,name,stone_price) VALUES (56,'익스트림',0,1,0,'검은 마법사',2147483647);
