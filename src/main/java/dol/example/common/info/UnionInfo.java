@@ -1,9 +1,6 @@
 package dol.example.common.info;
 
-import dol.example.domain.TCharacter;
 import lombok.Getter;
-
-import java.util.List;
 
 @Getter
 public enum UnionInfo {
@@ -44,7 +41,7 @@ public enum UnionInfo {
     private String name;
     private Integer stepLev;
 
-    private UnionInfo(
+    UnionInfo(
             Integer step,
             Integer sumOfLev,
             Integer requiredCoin,
@@ -58,47 +55,6 @@ public enum UnionInfo {
         this.raidersNumber = raidersNumber;
         this.name = name;
         this.stepLev = stepLev;
-    }
-
-    static public UnionInfo getUnionInfo(List<TCharacter> list) {
-        List<Integer> level = list.stream()
-                .map(o -> o.getLev())
-                .filter(o -> (o >= 60))
-                .toList();
-
-        // int sumOfLev = level.stream().reduce(0, Integer::sum);
-        // union 적용 캐릭터 수: 42
-        int sumOfLev = 0;
-        for (int i = 0; i < 42; i++) {
-            sumOfLev += level.get(i);
-        }
-        boolean formerOf5 = level.stream()
-                .filter(o -> (o >= 200))
-                .toList().size() > 0 ? true : false;
-
-        // NOVICE_1
-        if ((level.size() >= 3 && sumOfLev >= 500) || formerOf5) {
-            return NOVICE1;
-        }
-
-        UnionInfo result = NOVICE1;
-        for (UnionInfo info : UnionInfo.values()) {
-            // 위에서 이미 return 했을 것
-            if (info == NOVICE1)
-                continue;
-
-            if (sumOfLev < info.sumOfLev) {
-                result = getFrontUnionInfo(info);
-                break;
-            }
-        }
-
-        // SUPREME5
-        if (sumOfLev >= SUPREME5.sumOfLev) {
-            result = SUPREME5;
-        }
-
-        return result;
     }
 
     static public UnionInfo getFrontUnionInfo(UnionInfo unionInfo) {

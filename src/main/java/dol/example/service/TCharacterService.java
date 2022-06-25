@@ -1,6 +1,5 @@
 package dol.example.service;
 
-import dol.example.common.exception.advice.APIException;
 import dol.example.domain.TCharacter;
 
 import java.util.List;

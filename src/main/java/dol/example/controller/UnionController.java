@@ -1,6 +1,6 @@
 package dol.example.controller;
 
-import dol.example.dto.response.UnionResponse;
+import dol.example.dto.common.UnionDetail;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,7 +18,7 @@ import java.util.List;
 public class UnionController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<List<UnionResponse>> getAllUnionInfo() {
+    public ResponseEntity<List<UnionDetail>> getAllUnionInfo() {
         return ResponseEntity.ok(new ArrayList<>());
     }
 }
