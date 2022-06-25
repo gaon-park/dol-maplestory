@@ -6,7 +6,7 @@ import dol.example.domain.TCharacter;
 import dol.example.domain.TCharacterBoss;
 import dol.example.domain.TUnion;
 import dol.example.domain.TUser;
-import dol.example.dto.request.CharacterInfoRequest;
+import dol.example.dto.common.CharacterDetail;
 import dol.example.dto.request.PostCharactersRequest;
 import dol.example.service.TCharacterBossService;
 import dol.example.service.TCharacterService;
@@ -53,13 +53,12 @@ public class CharacterController {
 
     @RequestMapping(value = "/list", produces = "application/json; charset=utf8", method = RequestMethod.POST)
     public ResponseEntity<TUser> postCharacters(@RequestBody PostCharactersRequest request) {
-        Long userId = request.getUserId();
-        if (userId == null) {
+        if (request.getUserId() == null || request.getCharacterDetailList() == null) {
             throw new APIException(ExceptionInfo.INVALID_REQUEST_EXCEPTION);
         }
 
-        TUser tUser = tUserService.findTUser(userId);
-        List<TCharacter> characters = request.getCharacterInfoList()
+        TUser tUser = tUserService.findTUser(request.getUserId());
+        List<TCharacter> characters = request.getCharacterDetailList()
                 .stream()
                 .map(o ->
                         TCharacter
@@ -85,19 +84,19 @@ public class CharacterController {
         // if save success
         if (savedList.size() > 0) {
             // save clearable boss
-            List<CharacterInfoRequest> characterInfoRequestList = request.getCharacterInfoList();
-            for (CharacterInfoRequest characterInfoRequest : characterInfoRequestList) {
+            List<CharacterDetail> characterInfoRequestList = request.getCharacterDetailList();
+            for (CharacterDetail characterDetail : characterInfoRequestList) {
                 // if dto has clearable boss list
-                if (characterInfoRequest.getClearableBossList() != null && !characterInfoRequest.getClearableBossList().isEmpty()) {
+                if (characterDetail.getClearableBossList() != null && !characterDetail.getClearableBossList().isEmpty()) {
                     // find character id by name
-                    TCharacter tCharacter = savedList.stream().filter(o -> o.getCharacterName().equals(characterInfoRequest.getCharacterName())).findAny().orElse(null);
+                    TCharacter tCharacter = savedList.stream().filter(o -> o.getCharacterName().equals(characterDetail.getCharacterName())).findAny().orElse(null);
                     if (tCharacter != null) {
                         List<TCharacterBoss> tCharacterBossList = new ArrayList<>();
-                        for (int i = 0; i < characterInfoRequest.getClearableBossList().size(); i++) {
+                        for (int i = 0; i < characterDetail.getClearableBossList().size(); i++) {
                             TCharacterBoss temp = new TCharacterBoss();
                             temp.setCharacterId(tCharacter.getId());
-                            temp.setBossId(characterInfoRequest.getClearableBossList().get(i).getBossId());
-                            temp.setNumberOfPartyMembers(characterInfoRequest.getClearableBossList().get(i).getNumberOfPartyMembers());
+                            temp.setBossId(characterDetail.getClearableBossList().get(i).getBossId());
+                            temp.setNumberOfPartyMembers(characterDetail.getClearableBossList().get(i).getNumberOfPartyMembers());
                             tCharacterBossList.add(temp);
                         }
                         tCharacterBossService.saveTCharacterBossList(tCharacterBossList);
@@ -113,6 +112,6 @@ public class CharacterController {
             tUnionService.saveTUnion(tUnion);
         }
 
-        return ResponseEntity.ok(tUserService.findTUser(userId));
+        return ResponseEntity.ok(tUserService.findTUser(request.getUserId()));
     }
 }

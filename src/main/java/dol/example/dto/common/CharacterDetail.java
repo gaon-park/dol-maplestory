@@ -1,7 +1,7 @@
-package dol.example.dto.request;
+package dol.example.dto.common;
 
 import dol.example.domain.TCharacter;
-import dol.example.dto.common.ClearableBoss;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +10,6 @@ import java.util.List;
 
 @Getter
 @Setter
-public class CharacterInfoRequest extends TCharacter implements Serializable {
+public class CharacterDetail extends TCharacter implements Serializable {
     private List<ClearableBoss> clearableBossList;
 }

@@ -1,5 +1,6 @@
 package dol.example.dto.request;
 
+import dol.example.dto.common.CharacterDetail;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,5 +11,5 @@ import java.util.List;
 @Setter
 public class PostCharactersRequest implements Serializable {
     private Long userId;
-    private List<CharacterInfoRequest> characterInfoList;
+    private List<CharacterDetail> characterDetailList;
 }
