@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import dol.example.common.info.JobInfo;
+import dol.example.common.info.WorldInfo;
 import lombok.*;
 
 import javax.persistence.*;
@@ -45,10 +46,10 @@ public class TCharacter implements Serializable {
     private String avatarImgUrl;
 
     /**
-     * 월드명
+     * 월드
      */
-    @Column
-    private String worldName;
+    @Column(name = "world_info_id")
+    private WorldInfo worldInfo;
 
     /**
      * 닉네임

@@ -2,6 +2,7 @@ package dol.example.controller;
 
 import dol.example.common.exception.advice.APIException;
 import dol.example.common.info.ExceptionInfo;
+import dol.example.common.info.WorldInfo;
 import dol.example.domain.TCharacter;
 import dol.example.domain.TCharacterBoss;
 import dol.example.domain.TUnion;
@@ -58,7 +59,7 @@ public class CharacterController {
                 .builder()
                 .id(tCharacter.getId())
                 .avatarImgUrl(tCharacter.getAvatarImgUrl())
-                .worldName(tCharacter.getWorldName())
+                .worldName(tCharacter.getWorldInfo().getName())
                 .characterName(tCharacter.getCharacterName())
                 .lev(tCharacter.getLev())
                 .exp(tCharacter.getExp())
@@ -94,7 +95,7 @@ public class CharacterController {
                                 .builder()
                                 .user(tUser)
                                 .avatarImgUrl(o.getAvatarImgUrl())
-                                .worldName(o.getWorldName())
+                                .worldInfo(WorldInfo.getWorldInfoByWorldName(o.getWorldName()))
                                 .characterName(o.getCharacterName())
                                 .lev(o.getLev())
                                 .exp(o.getExp())
@@ -134,10 +135,12 @@ public class CharacterController {
             }
 
             // save union
-            TUnion tUnion = new TUnion();
-            tUnion.setCharacterIdList(savedList.stream().map(o -> o.getId()).toList());
-            tUnion.setWorldName(savedList.get(0).getWorldName());
-            tUnion.setUser(savedList.get(0).getUser());
+            TUnion tUnion = TUnion
+                    .builder()
+                    .characterIds(String.join("/", savedList.stream().map(o -> Long.toString(o.getId())).toList()))
+                    .worldInfo(savedList.get(0).getWorldInfo())
+                    .user(tUser)
+                    .build();
             tUnionService.saveTUnion(tUnion);
         }
 

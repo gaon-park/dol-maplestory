@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface TUnionService {
     TUnion saveTUnion(TUnion tUnion);
+
     UnionDetail getUnionDetail(List<TCharacter> list);
 }

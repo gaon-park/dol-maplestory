@@ -19,9 +19,6 @@ public class TUnionServiceImpl implements TUnionService {
     @Autowired
     TUnionRepository tUnionRepository;
 
-    @Autowired
-    TUserRepository tUserRepository;
-
     /**
      * union 적용 최대 캐릭터 수
      */

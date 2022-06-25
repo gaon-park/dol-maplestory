@@ -1,12 +1,12 @@
 package dol.example.controller;
 
+import dol.example.common.info.WorldInfo;
 import dol.example.dto.common.UnionDetail;
+import dol.example.service.TUnionService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +17,14 @@ import java.util.List;
 @RequestMapping("/v1/union")
 public class UnionController {
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<List<UnionDetail>> getAllUnionInfo() {
+    @Autowired
+    TUnionService tUnionService;
+
+    @RequestMapping(value = "/{worldName}", method = RequestMethod.GET)
+    public ResponseEntity<List<UnionDetail>> getUnionInfoOfSpecificWorld(@PathVariable String worldName) {
+        WorldInfo worldInfo = WorldInfo.getWorldInfoByWorldName(worldName);
+
+
         return ResponseEntity.ok(new ArrayList<>());
     }
 }

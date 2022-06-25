@@ -103,12 +103,12 @@ public class JsoupUtil {
             List<WorldInfo> worldInfoList = (worldName.contains("리부트")) ? WorldInfo.getRebootWorldInfoList() : WorldInfo.getNormalWorldInfoList();
             for (WorldInfo worldinfo : worldInfoList) {
                 if (src.endsWith(worldinfo.getIconURL())) {
-                    tCharacter.setWorldName(worldinfo.getName());
+                    tCharacter.setWorldInfo(worldinfo);
                     break;
                 }
             }
         } else {
-            tCharacter.setWorldName(worldName);
+            tCharacter.setWorldInfo(WorldInfo.getWorldInfoByWorldName(worldName));
         }
         return tCharacter;
     }
@@ -116,7 +116,7 @@ public class JsoupUtil {
     private TCharacter setWorldRank(TCharacter tCharacter) {
         String worldRankURL = "https://maplestory.nexon.com/Ranking/World/Total"
                 + "?c=" + tCharacter.getCharacterName()
-                + "&w=" + WorldInfo.getWorldInfoIdByWorldName(tCharacter.getWorldName());
+                + "&w=" + WorldInfo.getWorldInfoByWorldName(tCharacter.getWorldInfo().getName()).getId();
 
         Element element = getCharacterInfoElementFromURL(worldRankURL);
 

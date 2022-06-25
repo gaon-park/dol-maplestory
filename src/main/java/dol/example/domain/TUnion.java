@@ -1,5 +1,6 @@
 package dol.example.domain;
 
+import dol.example.common.info.WorldInfo;
 import lombok.*;
 
 import javax.persistence.*;
@@ -30,10 +31,10 @@ public class TUnion {
     private TUser user;
 
     /**
-     * 월드명
+     * 월드
      */
-    @Column
-    private String worldName;
+    @Column(name = "world_info_id")
+    private WorldInfo worldInfo;
 
     /**
      * 유니온에 소속된 캐릭터 id

@@ -56,10 +56,10 @@ public enum WorldInfo {
         this.iconURL = iconURL;
     }
 
-    static public Integer getWorldInfoIdByWorldName(String name) {
+    static public WorldInfo getWorldInfoByWorldName(String name) {
         for (WorldInfo worldInfo : WorldInfo.values()) {
             if (worldInfo.name.equals(name)) {
-                return worldInfo.id;
+                return worldInfo;
             }
         }
 
