@@ -5,6 +5,7 @@ import dol.example.common.info.ExceptionInfo;
 import dol.example.domain.TCharacter;
 import dol.example.domain.TUnion;
 import dol.example.domain.TUser;
+import dol.example.dto.common.CharacterDetail;
 import dol.example.repository.TCharacterRepository;
 import dol.example.repository.TUnionRepository;
 import dol.example.repository.TUserRepository;
@@ -40,6 +41,4 @@ public class TCharacterServiceImpl implements TCharacterService {
     public TCharacter findTCharacterById(Long id) {
         return tCharacterRepository.findById(id).orElseThrow(() -> new APIException(ExceptionInfo.NOT_FOUND_EXCEPTION));
     }
-
-
 }

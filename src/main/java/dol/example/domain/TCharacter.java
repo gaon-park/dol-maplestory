@@ -13,6 +13,7 @@ import java.io.Serializable;
 @Setter
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 @Table(
         name = "t_character",
         uniqueConstraints = {
@@ -97,10 +98,4 @@ public class TCharacter implements Serializable {
     @OneToOne(mappedBy = "character")
     @PrimaryKeyJoinColumn
     private TQuestOfCharacter quest;
-
-    /**
-     * 기본 생성자
-     */
-    public TCharacter() {
-    }
 }

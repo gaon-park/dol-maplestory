@@ -6,6 +6,7 @@ import dol.example.domain.TCharacter;
 import dol.example.domain.TCharacterBoss;
 import dol.example.domain.TUnion;
 import dol.example.domain.TUser;
+import dol.example.dto.common.CharacterBossDetail;
 import dol.example.dto.common.CharacterDetail;
 import dol.example.dto.request.PostCharactersRequest;
 import dol.example.service.TCharacterBossService;
@@ -47,8 +48,35 @@ public class CharacterController {
     }
 
     @RequestMapping(value = "/{characterId}", method = RequestMethod.GET)
-    public ResponseEntity<TCharacter> getCharacterInfo(@PathVariable Long characterId) {
-        return ResponseEntity.ok(tCharacterService.findTCharacterById(characterId));
+    public ResponseEntity<CharacterDetail> getCharacterInfo(@PathVariable Long characterId) {
+        TCharacter tCharacter = tCharacterService.findTCharacterById(characterId);
+        List<TCharacterBoss> tCharacterBossList = tCharacterBossService.findTCharacterBossListByCharacterId(tCharacter.getId());
+        List<CharacterBossDetail> characterBossDetailList = tCharacterBossService.convertToDetail(tCharacterBossList);
+
+        CharacterDetail characterDetail = CharacterDetail
+                .builder()
+                .id(tCharacter.getId())
+                .avatarImgUrl(tCharacter.getAvatarImgUrl())
+                .worldName(tCharacter.getWorldName())
+                .characterName(tCharacter.getCharacterName())
+                .lev(tCharacter.getLev())
+                .exp(tCharacter.getExp())
+                .job(tCharacter.getJob())
+                .pop(tCharacter.getPop())
+                .totRank(tCharacter.getTotRank())
+                .worldRank(tCharacter.getWorldRank())
+                .guild(tCharacter.getGuild())
+//                .quest(tCharacter.getQuest())
+                .clearableBossList(characterBossDetailList)
+                .weeklyEarnings(
+                        characterBossDetailList
+                                .stream()
+                                .map(o -> o.getSellingStonePrice())
+                                .mapToInt(Integer::intValue)
+                                .sum()
+                )
+                .build();
+        return ResponseEntity.ok(characterDetail);
     }
 
     @RequestMapping(value = "/list", produces = "application/json; charset=utf8", method = RequestMethod.POST)
@@ -74,7 +102,7 @@ public class CharacterController {
                                 .totRank(o.getTotRank())
                                 .worldRank(o.getWorldRank())
                                 .guild(o.getGuild())
-                                .quest(o.getQuest())
+//                                .quest(o.getQuest())
                                 .build())
                 .collect(Collectors.toList());
 
