@@ -6,19 +6,19 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 public class SoapUtil {
-    public String getCharacterInfoByAccountID(Long accountId){
+    public String getCharacterInfoByAccountID(Long accountId) {
         String result = "";
         try {
             // send message
             String sendMessage =
                     "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
-                    "<soap12:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\">\n" +
-                    "  <soap12:Body>\n" +
-                    "    <GetCharacterInfoByAccountID xmlns=\"https://api.maplestory.nexon.com/soap/\">\n" +
-                    "      <AccountID>" + accountId + "</AccountID>\n" +
-                    "    </GetCharacterInfoByAccountID>\n" +
-                    "  </soap12:Body>\n" +
-                    "</soap12:Envelope>";
+                            "<soap12:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\">\n" +
+                            "  <soap12:Body>\n" +
+                            "    <GetCharacterInfoByAccountID xmlns=\"https://api.maplestory.nexon.com/soap/\">\n" +
+                            "      <AccountID>" + accountId + "</AccountID>\n" +
+                            "    </GetCharacterInfoByAccountID>\n" +
+                            "  </soap12:Body>\n" +
+                            "</soap12:Envelope>";
 
             URL url = new URL("https://api.maplestory.nexon.com/soap/maplestory.asmx");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -39,7 +39,7 @@ public class SoapUtil {
             String inputLine = null;
             String responseStr = "";
             BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            while((inputLine = reader.readLine()) != null){
+            while ((inputLine = reader.readLine()) != null) {
                 System.out.println(inputLine);
                 responseStr += inputLine;
             }
@@ -48,7 +48,7 @@ public class SoapUtil {
 
             reader.close();
             writer.close();
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

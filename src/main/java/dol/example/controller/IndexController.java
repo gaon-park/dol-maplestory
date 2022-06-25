@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class IndexController {
 
     @GetMapping
-    public ResponseEntity<Object> testGet(){
+    public ResponseEntity<Object> testGet() {
 //        System.out.println("TEST SOAP API");
 //        SoapUtil soapUtil = new SoapUtil();
 //        soapUtil.getCharacterInfoByAccountID();

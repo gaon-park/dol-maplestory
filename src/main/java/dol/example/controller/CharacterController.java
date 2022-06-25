@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @CrossOrigin
@@ -42,20 +41,20 @@ public class CharacterController {
     TCharacterBossService tCharacterBossService;
 
     @RequestMapping(value = "/load/{characterName}", method = RequestMethod.GET)
-    public ResponseEntity<TCharacter> getCharacterFromMaplestory(@PathVariable String characterName){
+    public ResponseEntity<TCharacter> getCharacterFromMaplestory(@PathVariable String characterName) {
         JsoupUtil jsoupUtil = new JsoupUtil();
         return ResponseEntity.ok(jsoupUtil.getCharacterInfoFromMaplestory(characterName));
     }
 
     @RequestMapping(value = "/{characterId}", method = RequestMethod.GET)
-    public ResponseEntity<TCharacter> getCharacterInfo(@PathVariable Long characterId){
+    public ResponseEntity<TCharacter> getCharacterInfo(@PathVariable Long characterId) {
         return ResponseEntity.ok(tCharacterService.findTCharacterById(characterId));
     }
 
     @RequestMapping(value = "/list", produces = "application/json; charset=utf8", method = RequestMethod.POST)
     public ResponseEntity<TUser> postCharacters(@RequestBody PostCharactersRequest request) {
         Long userId = request.getUserId();
-        if(userId == null){
+        if (userId == null) {
             throw new APIException(ExceptionInfo.INVALID_REQUEST_EXCEPTION);
         }
 
@@ -64,7 +63,7 @@ public class CharacterController {
                 .stream()
                 .map(o ->
                         TCharacter
-                        .builder()
+                                .builder()
                                 .user(tUser)
                                 .avatarImgUrl(o.getAvatarImgUrl())
                                 .worldName(o.getWorldName())
@@ -84,17 +83,17 @@ public class CharacterController {
         List<TCharacter> savedList = tCharacterService.saveTCharacterList(characters);
 
         // if save success
-        if(savedList.size() > 0) {
+        if (savedList.size() > 0) {
             // save clearable boss
             List<CharacterInfoRequest> characterInfoRequestList = request.getCharacterInfoList();
-            for(CharacterInfoRequest characterInfoRequest : characterInfoRequestList){
+            for (CharacterInfoRequest characterInfoRequest : characterInfoRequestList) {
                 // if dto has clearable boss list
-                if(characterInfoRequest.getClearableBossList() != null && !characterInfoRequest.getClearableBossList().isEmpty()) {
+                if (characterInfoRequest.getClearableBossList() != null && !characterInfoRequest.getClearableBossList().isEmpty()) {
                     // find character id by name
                     TCharacter tCharacter = savedList.stream().filter(o -> o.getCharacterName().equals(characterInfoRequest.getCharacterName())).findAny().orElse(null);
-                    if(tCharacter != null){
+                    if (tCharacter != null) {
                         List<TCharacterBoss> tCharacterBossList = new ArrayList<>();
-                        for(int i = 0; i < characterInfoRequest.getClearableBossList().size(); i++){
+                        for (int i = 0; i < characterInfoRequest.getClearableBossList().size(); i++) {
                             TCharacterBoss temp = new TCharacterBoss();
                             temp.setCharacterId(tCharacter.getId());
                             temp.setBossId(characterInfoRequest.getClearableBossList().get(i).getBossId());

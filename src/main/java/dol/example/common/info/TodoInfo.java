@@ -57,7 +57,7 @@ public enum TodoInfo {
             String name,
             Boolean isDaily,
             Boolean isWeekly
-    ){
+    ) {
         this.id = id;
         this.name = name;
         this.isDaily = isDaily;
@@ -66,9 +66,10 @@ public enum TodoInfo {
 
     /**
      * 아케인 심볼과 관련된 메할일 리스트를 취득
+     *
      * @return
      */
-    static public List<TodoInfo> getTodoInfoListForArcaneSymbol(){
+    static public List<TodoInfo> getTodoInfoListForArcaneSymbol() {
         List<TodoInfo> result = new ArrayList<>();
 
         // 각 지역 아케인 심볼 몹잡기 퀘스트
@@ -90,7 +91,7 @@ public enum TodoInfo {
         return result;
     }
 
-    static public List<TodoInfo> getTodoInfoListForAuthenticSymbol(){
+    static public List<TodoInfo> getTodoInfoListForAuthenticSymbol() {
         List<TodoInfo> result = new ArrayList<>();
 
         // 각 지역 어센틱 심볼 몹잡기 퀘스트

@@ -25,10 +25,10 @@ public class TCharacterServiceImpl implements TCharacterService {
     TCharacterRepository tCharacterRepository;
 
     @Override
-    public List<TCharacter> saveTCharacterList(List<TCharacter> tCharacterList){
+    public List<TCharacter> saveTCharacterList(List<TCharacter> tCharacterList) {
         List<TCharacter> result = new ArrayList<>();
-        for(TCharacter tCharacter : tCharacterList){
-            if(tCharacterRepository.findByUserIdAndCharacterName(tCharacter.getUser().getId(), tCharacter.getCharacterName()).isEmpty()){
+        for (TCharacter tCharacter : tCharacterList) {
+            if (tCharacterRepository.findByUserIdAndCharacterName(tCharacter.getUser().getId(), tCharacter.getCharacterName()).isEmpty()) {
                 result.add(tCharacterRepository.save(tCharacter));
             }
         }

@@ -22,10 +22,11 @@ public class JsoupUtil {
 
     /**
      * 월드명을 모르는 경우
+     *
      * @param characterName
      * @return
      */
-    public TCharacter getCharacterInfoFromMaplestory(String characterName){
+    public TCharacter getCharacterInfoFromMaplestory(String characterName) {
         TCharacter tCharacter = null;
         // 일반 월드 우선 검색
         logger.info("characterName: [" + characterName + "] 검색 시작");
@@ -42,7 +43,7 @@ public class JsoupUtil {
         }
         logger.info("characterName: [" + characterName + "] 검색 성공");
 
-        if(tCharacter != null){
+        if (tCharacter != null) {
             tCharacter = setWorldRank(tCharacter);
         }
         return tCharacter;
@@ -50,14 +51,15 @@ public class JsoupUtil {
 
     /**
      * 월드명을 아는 경우(리부트/일반월드)
+     *
      * @param worldName
      * @param characterName
      * @return
      */
-    public TCharacter getCharacterInfoFromMaplestory(String worldName, String characterName){
+    public TCharacter getCharacterInfoFromMaplestory(String worldName, String characterName) {
         TCharacter tCharacter = getCharacterInfoFromTotRank(worldName, characterName);
         // 검색에 성공했을 경우, 월드 랭킹 설정
-        if(tCharacter != null){
+        if (tCharacter != null) {
             tCharacter = setWorldRank(tCharacter);
         }
         return tCharacter;
@@ -111,14 +113,14 @@ public class JsoupUtil {
         return tCharacter;
     }
 
-    private TCharacter setWorldRank(TCharacter tCharacter){
+    private TCharacter setWorldRank(TCharacter tCharacter) {
         String worldRankURL = "https://maplestory.nexon.com/Ranking/World/Total"
                 + "?c=" + tCharacter.getCharacterName()
                 + "&w=" + WorldInfo.getWorldInfoIdByWorldName(tCharacter.getWorldName());
 
         Element element = getCharacterInfoElementFromURL(worldRankURL);
 
-        if(element == null) {
+        if (element == null) {
             throw new APIException(ExceptionInfo.NOT_FOUND_EXCEPTION);
         }
 
@@ -137,7 +139,7 @@ public class JsoupUtil {
     }
 
 
-    private Element getCharacterInfoElementFromURL(String URL){
+    private Element getCharacterInfoElementFromURL(String URL) {
         Element element = null;
         try {
             Connection conn = Jsoup.connect(URL);
@@ -145,7 +147,7 @@ public class JsoupUtil {
 
             // 해당 캐릭터 추출
             element = html.selectFirst(".search_com_chk");
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return element;

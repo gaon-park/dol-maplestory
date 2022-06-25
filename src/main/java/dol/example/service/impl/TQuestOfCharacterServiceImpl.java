@@ -35,12 +35,12 @@ public class TQuestOfCharacterServiceImpl implements TQuestOfCharacterService {
         return tQuestOfCharacterRepository.save(tQuestOfCharacter);
     }
 
-    private TQuestOfCharacter convert(Long characterId, List<Todo> todoDTOList){
+    private TQuestOfCharacter convert(Long characterId, List<Todo> todoDTOList) {
         TQuestOfCharacter tQuestOfCharacter = new TQuestOfCharacter();
         tQuestOfCharacter.setCharacterId(characterId);
 
-        for(Todo dto : todoDTOList){
-            switch (dto.getTodoInfo()){
+        for (Todo dto : todoDTOList) {
+            switch (dto.getTodoInfo()) {
                 case ARCANE_QUEST0 -> tQuestOfCharacter.setArcaneQuest0(true);
                 case ARCANE_QUEST1 -> tQuestOfCharacter.setArcaneQuest1(true);
                 case ARCANE_QUEST2 -> tQuestOfCharacter.setArcaneQuest2(true);

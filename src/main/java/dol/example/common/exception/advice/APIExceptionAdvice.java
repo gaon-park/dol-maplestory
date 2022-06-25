@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 public class APIExceptionAdvice {
 
     @ExceptionHandler({APIException.class})
-    public ResponseEntity<APIExceptionEntity> exceptionHandler(HttpServletRequest request, final APIException e){
+    public ResponseEntity<APIExceptionEntity> exceptionHandler(HttpServletRequest request, final APIException e) {
         return ResponseEntity
                 .status(e.getApiExceptionInfo().getStatus())
                 .body(APIExceptionEntity.builder()

@@ -16,7 +16,7 @@ public enum JobClassificationInfo {
     private JobClassificationInfo(
             Integer id,
             String name
-    ){
+    ) {
         this.id = id;
         this.name = name;
     }

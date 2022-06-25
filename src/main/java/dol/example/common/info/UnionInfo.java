@@ -9,7 +9,7 @@ import java.util.List;
 public enum UnionInfo {
     NOVICE1(1, 500, 0, 9, "노비스", 1),
     NOVICE2(2, 1000, 120, 10, "노비스", 2),
-    NOVICE3(3, 1500,140, 11, "노비스", 3),
+    NOVICE3(3, 1500, 140, 11, "노비스", 3),
     NOVICE4(4, 2000, 150, 12, "노비스", 4),
     NOVICE5(5, 2500, 160, 13, "노비스", 5),
 
@@ -51,7 +51,7 @@ public enum UnionInfo {
             Integer raidersNumber,
             String name,
             Integer stepLev
-    ){
+    ) {
         this.step = step;
         this.sumOfLev = sumOfLev;
         this.requiredCoin = requiredCoin;
@@ -60,7 +60,7 @@ public enum UnionInfo {
         this.stepLev = stepLev;
     }
 
-    static public UnionInfo getUnionInfo(List<TCharacter> list){
+    static public UnionInfo getUnionInfo(List<TCharacter> list) {
         List<Integer> level = list.stream()
                 .map(o -> o.getLev())
                 .filter(o -> (o >= 60))
@@ -69,7 +69,7 @@ public enum UnionInfo {
         // int sumOfLev = level.stream().reduce(0, Integer::sum);
         // union 적용 캐릭터 수: 42
         int sumOfLev = 0;
-        for(int i = 0; i < 42; i++){
+        for (int i = 0; i < 42; i++) {
             sumOfLev += level.get(i);
         }
         boolean formerOf5 = level.stream()
@@ -77,33 +77,33 @@ public enum UnionInfo {
                 .toList().size() > 0 ? true : false;
 
         // NOVICE_1
-        if((level.size() >= 3 && sumOfLev >= 500) || formerOf5){
+        if ((level.size() >= 3 && sumOfLev >= 500) || formerOf5) {
             return NOVICE1;
         }
 
         UnionInfo result = NOVICE1;
-        for(UnionInfo info : UnionInfo.values()){
+        for (UnionInfo info : UnionInfo.values()) {
             // 위에서 이미 return 했을 것
-            if(info == NOVICE1)
+            if (info == NOVICE1)
                 continue;
 
-            if(sumOfLev < info.sumOfLev){
+            if (sumOfLev < info.sumOfLev) {
                 result = getFrontUnionInfo(info);
                 break;
             }
         }
 
         // SUPREME5
-        if(sumOfLev >= SUPREME5.sumOfLev){
+        if (sumOfLev >= SUPREME5.sumOfLev) {
             result = SUPREME5;
         }
 
         return result;
     }
 
-    static public UnionInfo getFrontUnionInfo(UnionInfo unionInfo){
-        for(UnionInfo info : UnionInfo.values()){
-            if(unionInfo.step.equals(info.step + 1)){
+    static public UnionInfo getFrontUnionInfo(UnionInfo unionInfo) {
+        for (UnionInfo info : UnionInfo.values()) {
+            if (unionInfo.step.equals(info.step + 1)) {
                 return info;
             }
         }
@@ -112,9 +112,9 @@ public enum UnionInfo {
         return null;
     }
 
-    static public UnionInfo getNextUnionInfo(UnionInfo unionInfo){
-        for(UnionInfo info : UnionInfo.values()){
-            if(unionInfo.step.equals(info.step - 1)){
+    static public UnionInfo getNextUnionInfo(UnionInfo unionInfo) {
+        for (UnionInfo info : UnionInfo.values()) {
+            if (unionInfo.step.equals(info.step - 1)) {
                 return info;
             }
         }

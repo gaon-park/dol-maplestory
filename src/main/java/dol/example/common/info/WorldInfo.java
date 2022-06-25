@@ -38,7 +38,7 @@ public enum WorldInfo {
             Integer id,
             String name,
             Boolean isReboot
-    ){
+    ) {
         this.id = id;
         this.name = name;
         this.isReboot = isReboot;
@@ -49,16 +49,16 @@ public enum WorldInfo {
             String name,
             Boolean isReboot,
             String iconURL
-    ){
+    ) {
         this.id = id;
         this.name = name;
         this.isReboot = isReboot;
         this.iconURL = iconURL;
     }
 
-    static public Integer getWorldInfoIdByWorldName(String name){
-        for(WorldInfo worldInfo : WorldInfo.values()){
-            if(worldInfo.name.equals(name)){
+    static public Integer getWorldInfoIdByWorldName(String name) {
+        for (WorldInfo worldInfo : WorldInfo.values()) {
+            if (worldInfo.name.equals(name)) {
                 return worldInfo.id;
             }
         }
@@ -66,17 +66,17 @@ public enum WorldInfo {
         return null;
     }
 
-    static public List<WorldInfo> getNormalWorldInfoList(){
+    static public List<WorldInfo> getNormalWorldInfoList() {
         List<WorldInfo> list = new ArrayList<>();
-        for(WorldInfo worldInfo : WorldInfo.values()){
-            if(worldInfo.isReboot){
+        for (WorldInfo worldInfo : WorldInfo.values()) {
+            if (worldInfo.isReboot) {
                 list.add(worldInfo);
             }
         }
         return list;
     }
 
-    static public List<WorldInfo> getRebootWorldInfoList(){
+    static public List<WorldInfo> getRebootWorldInfoList() {
         List<WorldInfo> list = new ArrayList<>();
         list.add(WORLD_1);
         list.add(WORLD_2);

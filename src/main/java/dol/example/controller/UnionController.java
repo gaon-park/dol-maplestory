@@ -18,7 +18,7 @@ import java.util.List;
 public class UnionController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<List<UnionResponse>> getAllUnionInfo(){
+    public ResponseEntity<List<UnionResponse>> getAllUnionInfo() {
         return ResponseEntity.ok(new ArrayList<>());
     }
 }

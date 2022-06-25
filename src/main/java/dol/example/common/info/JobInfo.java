@@ -122,7 +122,7 @@ public enum JobInfo {
             JobClassificationInfo jobClassificationInfo,
             String jobDetail,
             Integer finalJobId
-    ){
+    ) {
         this.id = id;
         this.jobClassificationInfo = jobClassificationInfo;
         this.jobDetail = jobDetail;
@@ -131,12 +131,13 @@ public enum JobInfo {
 
     /**
      * jobDetail 값으로 JobInfo 확인
+     *
      * @param jobDetail
      * @return
      */
-    static public JobInfo getJobInfoByJobDetail(String jobDetail){
-        for(JobInfo jobInfo : JobInfo.values()){
-            if(jobInfo.jobDetail.equals(jobDetail)){
+    static public JobInfo getJobInfoByJobDetail(String jobDetail) {
+        for (JobInfo jobInfo : JobInfo.values()) {
+            if (jobInfo.jobDetail.equals(jobDetail)) {
                 return jobInfo;
             }
         }
@@ -145,12 +146,13 @@ public enum JobInfo {
 
     /**
      * 최종 전직명을 가진 JobInfo 취득
+     *
      * @return
      */
-    static public List<JobInfo> getFinalJobInfos(){
+    static public List<JobInfo> getFinalJobInfos() {
         List<JobInfo> result = new ArrayList<>();
-        for(JobInfo jobInfo : JobInfo.values()){
-            if(jobInfo.getFinalJobId().equals(jobInfo.getId())){
+        for (JobInfo jobInfo : JobInfo.values()) {
+            if (jobInfo.getFinalJobId().equals(jobInfo.getId())) {
                 result.add(jobInfo);
             }
         }

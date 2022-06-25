@@ -29,10 +29,10 @@ public class UserController {
     TCharacterService tCharacterService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public ResponseEntity<TUser> read(@RequestBody Map<String, String> request){
+    public ResponseEntity<TUser> read(@RequestBody Map<String, String> request) {
         String email = request.get("email");
 
-        if(email == null){
+        if (email == null) {
             throw new APIException(ExceptionInfo.INVALID_REQUEST_EXCEPTION);
         }
 
@@ -44,7 +44,7 @@ public class UserController {
         chkLogical(request);
 
         String representativeCharacterName = request.getRepresentativeCharacterName();
-        if(representativeCharacterName.isEmpty()){
+        if (representativeCharacterName.isEmpty()) {
             throw new APIException(ExceptionInfo.INVALID_REQUEST_EXCEPTION);
         }
 
@@ -52,10 +52,10 @@ public class UserController {
         JsoupUtil jsoupUtil = new JsoupUtil();
         // 일반 월드 검색
         TCharacter tCharacter = jsoupUtil.getCharacterInfoFromMaplestory(WorldInfo.ALL_0.getName(), representativeCharacterName);
-        if(tCharacter == null){
+        if (tCharacter == null) {
             // 캐릭터 조회에 실패한 경우, 리부트 월드 검색
             tCharacter = jsoupUtil.getCharacterInfoFromMaplestory(WorldInfo.ALL_1.getName(), representativeCharacterName);
-            if(tCharacter == null){
+            if (tCharacter == null) {
                 throw new APIException(ExceptionInfo.NOT_FOUND_EXCEPTION, "메이플 월드에 존재하지 않는 캐릭터입니다.");
             }
         }
@@ -69,16 +69,16 @@ public class UserController {
     }
 
     @RequestMapping(value = "", produces = "application/json; charset=utf8", method = RequestMethod.POST)
-    public ResponseEntity<TUser> onlyDolRegist(@RequestBody TUser request){
+    public ResponseEntity<TUser> onlyDolRegist(@RequestBody TUser request) {
         chkLogical(request);
 
         return ResponseEntity.ok().body(tUserService.saveTUser(request));
     }
 
-    private void chkLogical(TUser request){
+    private void chkLogical(TUser request) {
         String email = request.getEmail();
 
-        if(email.isEmpty()){
+        if (email.isEmpty()) {
             throw new APIException(ExceptionInfo.INVALID_REQUEST_EXCEPTION);
         }
     }

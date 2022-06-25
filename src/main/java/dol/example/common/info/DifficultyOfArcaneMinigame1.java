@@ -14,7 +14,7 @@ public enum DifficultyOfArcaneMinigame1 {
     private DifficultyOfArcaneMinigame1(
             Integer id,
             String difficulty
-    ){
+    ) {
         this.id = id;
         this.difficulty = difficulty;
     }

@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface TCharacterService {
     List<TCharacter> saveTCharacterList(List<TCharacter> tCharacterList);
+
     TCharacter findTCharacterById(Long id);
 }

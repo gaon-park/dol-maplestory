@@ -21,7 +21,7 @@ import java.io.Serializable;
 )
 @Entity
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonIdentityInfo (generator = ObjectIdGenerators.PropertyGenerator. class , property = "id" )
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @ToString
 public class TCharacter implements Serializable {
 
@@ -101,5 +101,6 @@ public class TCharacter implements Serializable {
     /**
      * 기본 생성자
      */
-    public TCharacter() { }
+    public TCharacter() {
+    }
 }

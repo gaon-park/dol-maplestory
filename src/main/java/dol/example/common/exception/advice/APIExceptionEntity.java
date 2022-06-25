@@ -13,7 +13,7 @@ public class APIExceptionEntity {
     private String detail;
 
     @Builder
-    public APIExceptionEntity(String code, String message, String detail){
+    public APIExceptionEntity(String code, String message, String detail) {
         this.code = code;
         this.message = message;
         this.detail = detail;

@@ -12,14 +12,15 @@ public class JsonUtil {
 
     /**
      * soap api 결과(xml)을 json객체로 변환
+     *
      * @param xml
      * @return
      */
-    public JSONObject convertXmlToJson(String xml){
+    public JSONObject convertXmlToJson(String xml) {
         JSONObject jsonObject = null;
-        try{
+        try {
             jsonObject = XML.toJSONObject(xml);
-        } catch (JSONException e){
+        } catch (JSONException e) {
             e.printStackTrace();
         }
         return jsonObject;
@@ -27,6 +28,7 @@ public class JsonUtil {
 
     /**
      * json객체를 TCharacter로 변환
+     *
      * @param jsonObject
      * @return
      */
@@ -37,7 +39,7 @@ public class JsonUtil {
         TCharacter tCharacter = null;
         try {
             tCharacter = objectMapper.readValue(jsonObject.toString(), TCharacter.class);
-        } catch(JsonProcessingException e){
+        } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
 
@@ -46,10 +48,11 @@ public class JsonUtil {
 
     /**
      * soap api 결과(xml)를 json객체로 변환한 값에 대해 TCharacter로 변환하기 위한 값만 가져옴
+     *
      * @param jsonObject
      * @return
      */
-    private JSONObject getUserInfoFromNexonJson(JSONObject jsonObject){
+    private JSONObject getUserInfoFromNexonJson(JSONObject jsonObject) {
         return jsonObject
                 .getJSONObject("soap:Envelope")
                 .getJSONObject("soap:Body")

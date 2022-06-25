@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface TQuestOfCharacterService {
     TQuestOfCharacter findQuestOfCharacter(Long characterId) throws NotFoundException;
+
     TQuestOfCharacter saveQuestOfCharacter(Long characterId, List<Todo> todoDtoList) throws NotFoundException;
 }

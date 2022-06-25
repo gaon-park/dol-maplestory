@@ -10,12 +10,12 @@ public class APIException extends RuntimeException {
     private ExceptionInfo apiExceptionInfo;
     private String detail;
 
-    public APIException(ExceptionInfo apiExceptionInfo){
+    public APIException(ExceptionInfo apiExceptionInfo) {
         super(apiExceptionInfo.getMessage());
         this.apiExceptionInfo = apiExceptionInfo;
     }
 
-    public APIException(ExceptionInfo apiExceptionInfo, String detail){
+    public APIException(ExceptionInfo apiExceptionInfo, String detail) {
         super(apiExceptionInfo.getMessage());
         this.apiExceptionInfo = apiExceptionInfo;
         this.detail = detail;

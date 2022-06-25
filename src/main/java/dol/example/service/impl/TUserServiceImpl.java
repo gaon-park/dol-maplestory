@@ -20,17 +20,17 @@ public class TUserServiceImpl implements TUserService {
     }
 
     @Override
-    public TUser findTUser(String email){
+    public TUser findTUser(String email) {
         return tUserRepository.findByEmail(email).orElseThrow(() -> new APIException(ExceptionInfo.NOT_FOUND_EXCEPTION));
     }
 
     @Override
     public TUser saveTUser(TUser tUser) {
-        if(tUser.getEmail() == null || tUser.getEmail().isEmpty()){
+        if (tUser.getEmail() == null || tUser.getEmail().isEmpty()) {
             throw new APIException(ExceptionInfo.INVALID_REQUEST_EXCEPTION);
         }
 
-        if(!tUserRepository.findByEmail(tUser.getEmail()).isEmpty()){
+        if (!tUserRepository.findByEmail(tUser.getEmail()).isEmpty()) {
             throw new APIException(ExceptionInfo.ALREADY_EXIST_EXCEPTION);
         }
 

@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "t_user")
-@JsonIdentityInfo (generator = ObjectIdGenerators.PropertyGenerator. class , property = "id" )
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
 public class TUser implements Serializable {
 
@@ -63,12 +63,12 @@ public class TUser implements Serializable {
     @Column
     private List<TUnion> tUnionList = new ArrayList<>();
 
-    public void addTCharacter(TCharacter tCharacter){
+    public void addTCharacter(TCharacter tCharacter) {
         tCharacterList.add(tCharacter);
         tCharacter.setUser(this);
     }
 
-    public void addTUnionList(TUnion tUnion){
+    public void addTUnionList(TUnion tUnion) {
         tUnionList.add(tUnion);
         tUnion.setUser(this);
     }
