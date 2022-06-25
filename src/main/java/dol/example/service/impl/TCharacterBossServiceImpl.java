@@ -9,6 +9,7 @@ import dol.example.service.TCharacterBossService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -22,6 +23,8 @@ public class TCharacterBossServiceImpl implements TCharacterBossService {
     @Autowired
     TBossRepository tBossRepository;
 
+    private static final Integer AVAILABLE_STONE_COUNTS_FOR_SALE_PER_WEEK = 180;
+
     @Override
     public List<TCharacterBoss> saveTCharacterBossList(List<TCharacterBoss> tCharacterBossList) {
         return tCharacterBossRepository.saveAll(tCharacterBossList);
@@ -34,7 +37,7 @@ public class TCharacterBossServiceImpl implements TCharacterBossService {
 
     @Override
     public List<CharacterBossDetail> convertToDetail(List<TCharacterBoss> tCharacterBossList) {
-        if(tCharacterBossList != null) {
+        if (tCharacterBossList != null) {
             Map<Integer, TBoss> tBossMap = tBossRepository.findAll().stream().collect(Collectors.toMap(TBoss::getId, Function.identity()));
             return tCharacterBossList
                     .stream()
@@ -49,5 +52,22 @@ public class TCharacterBossServiceImpl implements TCharacterBossService {
                     .toList();
         }
         return null;
+    }
+
+    /**
+     * 최대 주간 수익을 낼 수 있게 리스트 재구성
+     *
+     * @param characterBossDetailList
+     * @return
+     */
+    @Override
+    public List<CharacterBossDetail> getBestWeeklyEarnings(List<CharacterBossDetail> characterBossDetailList) {
+        List<CharacterBossDetail> priceList =
+                characterBossDetailList
+                        .stream()
+                        .sorted(Comparator.comparing(CharacterBossDetail::getSellingStonePrice))
+                        .toList();
+        Integer maxIndex = (AVAILABLE_STONE_COUNTS_FOR_SALE_PER_WEEK.compareTo(priceList.size()) > 0) ? priceList.size() : AVAILABLE_STONE_COUNTS_FOR_SALE_PER_WEEK;
+        return priceList.subList(0, maxIndex);
     }
 }

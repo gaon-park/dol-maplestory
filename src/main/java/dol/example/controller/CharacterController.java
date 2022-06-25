@@ -52,6 +52,7 @@ public class CharacterController {
         TCharacter tCharacter = tCharacterService.findTCharacterById(characterId);
         List<TCharacterBoss> tCharacterBossList = tCharacterBossService.findTCharacterBossListByCharacterId(tCharacter.getId());
         List<CharacterBossDetail> characterBossDetailList = tCharacterBossService.convertToDetail(tCharacterBossList);
+        List<CharacterBossDetail> salesListForBestWeeklyRevenue = tCharacterBossService.getBestWeeklyEarnings(characterBossDetailList);
 
         CharacterDetail characterDetail = CharacterDetail
                 .builder()
@@ -68,12 +69,12 @@ public class CharacterController {
                 .guild(tCharacter.getGuild())
 //                .quest(tCharacter.getQuest())
                 .clearableBossList(characterBossDetailList)
-                .weeklyEarnings(
-                        characterBossDetailList
+                .salesListForBestWeeklyRevenue(salesListForBestWeeklyRevenue)
+                .weeklyRevenue(
+                        salesListForBestWeeklyRevenue
                                 .stream()
                                 .map(o -> o.getSellingStonePrice())
-                                .mapToInt(Integer::intValue)
-                                .sum()
+                                .reduce(0, Integer::sum)
                 )
                 .build();
         return ResponseEntity.ok(characterDetail);

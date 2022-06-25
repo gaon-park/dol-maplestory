@@ -9,4 +9,5 @@ public interface TCharacterBossService {
     List<TCharacterBoss> saveTCharacterBossList(List<TCharacterBoss> tCharacterBossList);
     List<TCharacterBoss> findTCharacterBossListByCharacterId(Long characterId);
     List<CharacterBossDetail> convertToDetail(List<TCharacterBoss> tCharacterBossList);
+    List<CharacterBossDetail> getBestWeeklyEarnings(List<CharacterBossDetail> characterBossDetailList);
 }

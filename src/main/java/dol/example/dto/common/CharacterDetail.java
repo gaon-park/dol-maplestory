@@ -26,5 +26,6 @@ public class CharacterDetail implements Serializable {
     private Integer worldRank;
     private String guild;
     private List<CharacterBossDetail> clearableBossList;
-    private Integer weeklyEarnings;
+    private List<CharacterBossDetail> salesListForBestWeeklyRevenue;
+    private Integer weeklyRevenue;
 }
