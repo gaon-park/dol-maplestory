@@ -1,9 +1,6 @@
 package dol.example.dto.common;
 
 import dol.example.common.info.JobInfo;
-import dol.example.common.info.WorldInfo;
-import dol.example.domain.TCharacter;
-import dol.example.domain.TQuestOfCharacter;
 import lombok.*;
 
 import java.io.Serializable;
