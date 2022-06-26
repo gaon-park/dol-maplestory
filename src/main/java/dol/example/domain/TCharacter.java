@@ -2,6 +2,7 @@ package dol.example.domain;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import dol.example.common.info.JobInfo;
 import dol.example.common.info.WorldInfo;
@@ -49,6 +50,7 @@ public class TCharacter implements Serializable {
      * 월드
      */
     @Column(name = "world_info_id")
+    @JsonProperty("worldName")
     private WorldInfo worldInfo;
 
     /**

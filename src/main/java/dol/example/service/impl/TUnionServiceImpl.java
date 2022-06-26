@@ -43,6 +43,44 @@ public class TUnionServiceImpl implements TUnionService {
     }
 
     /**
+     * 유저 아이디를 통해 전체 월드의 유니온 정보 획득
+     *
+     * @param tUser
+     * @return
+     */
+    @Override
+    public List<UnionDetail> findTUnionByUser(TUser tUser) {
+        return tUnionRepository
+                .findByUser(tUser)
+                .stream()
+                .map(o ->
+                        tCharacterRepository
+                                .findAllById(o.getCharacterIdList()))
+                .map(o ->
+                        getUnionDetail(o, o.get(0).getWorldInfo().getId()))
+                .toList();
+    }
+
+    /**
+     * 유저 아이디, 월드 아이디를 통해 해당 월드의 유니온 정보 획득
+     *
+     * @param tUser
+     * @param worldInfoId
+     * @return
+     */
+    @Override
+    public UnionDetail findTUnionByUserAndWorldInfoId(TUser tUser, Integer worldInfoId) {
+        return getUnionDetail(
+                tCharacterRepository
+                        .findAllById(
+                                tUnionRepository
+                                        .findByUserAndWorldInfo(tUser, WorldInfo.getWorldInfoById(worldInfoId))
+                                        .orElseThrow(() -> new APIException(ExceptionInfo.NOT_FOUND_EXCEPTION, "유니온 정보가 존재하지 않습니다"))
+                                        .getCharacterIdList()),
+                worldInfoId);
+    }
+
+    /**
      * 캐릭터 리스트를 통해 유니온 시스템 계산
      *
      * @param list
@@ -77,25 +115,6 @@ public class TUnionServiceImpl implements TUnionService {
                         .toList()
                 )
                 .build();
-    }
-
-    /**
-     * 유저 아이디, 월드 아이디를 통해 해당 월드의 유니온 정보 획득
-     *
-     * @param tUser
-     * @param worldInfoId
-     * @return
-     */
-    @Override
-    public UnionDetail findTUnionByUserAndWorldInfoId(TUser tUser, Integer worldInfoId) {
-        return getUnionDetail(
-                tCharacterRepository
-                        .findAllById(
-                                tUnionRepository
-                                        .findByUserAndWorldInfo(tUser, WorldInfo.getWorldInfoById(worldInfoId))
-                                        .orElseThrow(() -> new APIException(ExceptionInfo.NOT_FOUND_EXCEPTION, "유니온 정보가 존재하지 않습니다"))
-                                        .getCharacterIdList()),
-                worldInfoId);
     }
 
     /**

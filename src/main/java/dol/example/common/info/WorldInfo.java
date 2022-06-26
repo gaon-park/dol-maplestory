@@ -1,5 +1,6 @@
 package dol.example.common.info;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 
@@ -92,6 +93,16 @@ public enum WorldInfo {
         List<WorldInfo> list = new ArrayList<>();
         list.add(WORLD_1);
         list.add(WORLD_2);
+        return list;
+    }
+
+    static public List<WorldInfo> getSpecificWorldInfoList() {
+        List<WorldInfo> list = new ArrayList<>();
+        for (WorldInfo worldInfo : WorldInfo.values()) {
+            if (!worldInfo.equals(ALL_0) && !worldInfo.equals(ALL_1)) {
+                list.add(worldInfo);
+            }
+        }
         return list;
     }
 }

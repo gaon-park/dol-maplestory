@@ -10,6 +10,8 @@ import java.util.List;
 public interface TUnionService {
     TUnion saveTUnion(TUnion tUnion);
 
+    List<UnionDetail> findTUnionByUser(TUser tUser);
+
     UnionDetail findTUnionByUserAndWorldInfoId(TUser tUser, Integer worldInfoId);
 
     UnionDetail getUnionDetail(List<TCharacter> list, Integer worldInfoId);
