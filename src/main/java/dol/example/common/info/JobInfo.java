@@ -130,6 +130,22 @@ public enum JobInfo {
     }
 
     /**
+     * id 값으로 JobInfo 확인
+     *
+     * @param id
+     * @return
+     */
+    static public JobInfo getJobInfoById(Integer id) {
+        for (JobInfo jobInfo : JobInfo.values()) {
+            if (jobInfo.getId().equals(id)) {
+                return jobInfo;
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * jobDetail 값으로 JobInfo 확인
      *
      * @param jobDetail
@@ -152,7 +168,8 @@ public enum JobInfo {
     static public List<JobInfo> getFinalJobInfos() {
         List<JobInfo> result = new ArrayList<>();
         for (JobInfo jobInfo : JobInfo.values()) {
-            if (jobInfo.getFinalJobId().equals(jobInfo.getId())) {
+            if (jobInfo.finalJobId != null
+                    && jobInfo.getFinalJobId().equals(jobInfo.getId())) {
                 result.add(jobInfo);
             }
         }

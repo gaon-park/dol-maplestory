@@ -1,5 +1,6 @@
 package dol.example.common.info;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 
 @Getter
@@ -38,6 +39,8 @@ public enum UnionInfo {
     private Integer sumOfLev;
     private Integer requiredCoin;
     private Integer raidersNumber;
+
+    @JsonValue
     private String name;
     private Integer stepLev;
 

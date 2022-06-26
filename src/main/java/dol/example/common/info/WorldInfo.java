@@ -1,5 +1,6 @@
 package dol.example.common.info;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -30,6 +31,8 @@ public enum WorldInfo {
     WORLD_2(2, "리부트", true, "/world_icon/icon_3.png");
 
     private Integer id;
+
+    @JsonValue
     private String name;
     private Boolean isReboot;
     private String iconURL;
@@ -54,6 +57,15 @@ public enum WorldInfo {
         this.name = name;
         this.isReboot = isReboot;
         this.iconURL = iconURL;
+    }
+
+    static public WorldInfo getWorldInfoById(Integer id) {
+        for (WorldInfo worldInfo : WorldInfo.values()) {
+            if (worldInfo.id.equals(id)) {
+                return worldInfo;
+            }
+        }
+        return null;
     }
 
     static public WorldInfo getWorldInfoByWorldName(String name) {

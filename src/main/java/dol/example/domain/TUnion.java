@@ -1,5 +1,6 @@
 package dol.example.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dol.example.common.info.WorldInfo;
 import lombok.*;
 
@@ -42,6 +43,7 @@ public class TUnion {
      * 1/2/3/4
      */
     @Column
+    @JsonIgnore
     private String characterIds;
 
     /**

@@ -2,13 +2,13 @@ package dol.example.dto.common;
 
 import dol.example.common.info.JobInfo;
 import dol.example.common.info.UnionInfo;
-import dol.example.domain.TCharacter;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 @Getter
 @Setter
@@ -51,12 +51,12 @@ public class UnionDetail implements Serializable {
     private List<JobInfo> nonexistentJobList;
 
     /**
-     * 전체 캐릭터 리스트
+     * 중복된 직업을 가진 캐릭터 맵
      */
-    private List<TCharacter> characterList;
+    private Map<JobInfo, List<SimpleCharacter>> duplicateCharacterMap;
 
     /**
-     * 직업이 중복되는 캐릭터들
+     * 전체 캐릭터 리스트
      */
-    private List<TCharacter> duplicateCharacterList;
+    private List<SimpleCharacter> characterList;
 }
