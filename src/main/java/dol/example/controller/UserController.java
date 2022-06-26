@@ -29,19 +29,15 @@ public class UserController {
     TCharacterService tCharacterService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public ResponseEntity<TUser> read(@RequestBody Map<String, String> request) {
-        String email = request.get("email");
+    public ResponseEntity<TUser> read(@RequestBody TUser tUser) {
+        chkLogicalId(tUser);
 
-        if (email == null) {
-            throw new APIException(ExceptionInfo.INVALID_REQUEST_EXCEPTION);
-        }
-
-        return ResponseEntity.ok(tUserService.findTUser(email));
+        return ResponseEntity.ok(tUserService.findTUser(tUser.getId()));
     }
 
     @RequestMapping(value = "/with-maple", produces = "application/json; charset=utf8", method = RequestMethod.POST)
     public ResponseEntity<TUser> regist(@RequestBody TUser request) {
-        chkLogical(request);
+        chkLogicalEmail(request);
 
         String representativeCharacterName = request.getRepresentativeCharacterName();
         if (representativeCharacterName.isEmpty()) {
@@ -70,15 +66,23 @@ public class UserController {
 
     @RequestMapping(value = "", produces = "application/json; charset=utf8", method = RequestMethod.POST)
     public ResponseEntity<TUser> onlyDolRegist(@RequestBody TUser request) {
-        chkLogical(request);
+        chkLogicalEmail(request);
 
         return ResponseEntity.ok().body(tUserService.saveTUser(request));
     }
 
-    private void chkLogical(TUser request) {
+    private void chkLogicalEmail(TUser request) {
         String email = request.getEmail();
 
         if (email.isEmpty()) {
+            throw new APIException(ExceptionInfo.INVALID_REQUEST_EXCEPTION);
+        }
+    }
+
+    private void chkLogicalId(TUser request) {
+        Long id = request.getId();
+
+        if (id == null) {
             throw new APIException(ExceptionInfo.INVALID_REQUEST_EXCEPTION);
         }
     }
