@@ -2,41 +2,40 @@ package dol.example.service.impl;
 
 import dol.example.common.exception.advice.APIException;
 import dol.example.common.info.ExceptionInfo;
-import dol.example.domain.TQuestOfCharacter;
+import dol.example.domain.TCharacterQuest;
 import dol.example.dto.todo.Todo;
 import dol.example.repository.TCharacterRepository;
-import dol.example.repository.TQuestOfCharacterRepository;
-import dol.example.service.TQuestOfCharacterService;
-import javassist.NotFoundException;
+import dol.example.repository.TCharacterQuestRepository;
+import dol.example.service.TCharacterQuestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class TQuestOfCharacterServiceImpl implements TQuestOfCharacterService {
+public class TCharacterQuestServiceImpl implements TCharacterQuestService {
 
     @Autowired
     private TCharacterRepository tCharacterRepository;
 
     @Autowired
-    private TQuestOfCharacterRepository tQuestOfCharacterRepository;
+    private TCharacterQuestRepository tQuestOfCharacterRepository;
 
     @Override
-    public TQuestOfCharacter findQuestOfCharacter(Long characterId) {
+    public TCharacterQuest findQuestOfCharacter(Long characterId) {
         return tQuestOfCharacterRepository.findById(characterId).orElseThrow(() -> new APIException(ExceptionInfo.INVALID_REQUEST_EXCEPTION, "존재하지 않는 캐릭터 id"));
     }
 
     @Override
-    public TQuestOfCharacter saveQuestOfCharacter(Long characterId, List<Todo> todoDTOList) {
+    public TCharacterQuest saveQuestOfCharacter(Long characterId, List<Todo> todoDTOList) {
         tCharacterRepository.findById(characterId).orElseThrow(() -> new APIException(ExceptionInfo.INVALID_REQUEST_EXCEPTION, "존재하지 않는 캐릭터 id " + characterId));
 
-        TQuestOfCharacter tQuestOfCharacter = convert(characterId, todoDTOList);
+        TCharacterQuest tQuestOfCharacter = convert(characterId, todoDTOList);
         return tQuestOfCharacterRepository.save(tQuestOfCharacter);
     }
 
-    private TQuestOfCharacter convert(Long characterId, List<Todo> todoDTOList) {
-        TQuestOfCharacter tQuestOfCharacter = new TQuestOfCharacter();
+    private TCharacterQuest convert(Long characterId, List<Todo> todoDTOList) {
+        TCharacterQuest tQuestOfCharacter = new TCharacterQuest();
         tQuestOfCharacter.setCharacterId(characterId);
 
         for (Todo dto : todoDTOList) {

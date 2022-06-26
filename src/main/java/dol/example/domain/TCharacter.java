@@ -100,5 +100,5 @@ public class TCharacter implements Serializable {
 
     @OneToOne(mappedBy = "character")
     @PrimaryKeyJoinColumn
-    private TQuestOfCharacter quest;
+    private TCharacterQuest quest;
 }

@@ -11,9 +11,9 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "t_quest_of_character")
+@Table(name = "t_character_quest")
 @Entity
-public class TQuestOfCharacter {
+public class TCharacterQuest {
 
     @Id
     @Column(name = "character_id")
