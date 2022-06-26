@@ -1,6 +1,7 @@
 package dol.example.controller;
 
 import dol.example.common.exception.advice.APIException;
+import dol.example.common.info.WorldInfo;
 import dol.example.domain.TCharacter;
 import dol.example.dto.response.SearchCharacterListResponse;
 import dol.example.util.JsonUtil;
@@ -81,31 +82,18 @@ public class MapleStoryController {
     private WorldCharacterPair getCharacterNameListFromSiteCopyString(String siteCopyString) {
         String[] lines = siteCopyString.split("\\n");
 
-        // [대표캐릭터+월드명]을 검색
-        String characterWorldNameStr = "";
-        String worldName = "";
-        int index = 0;
-        for (int i = index; i < lines.length; i++) {
-            String line = lines[i];
-            if (line.contains("마이메이플")) {
-                // [대표캐릭터+월드명+직업명]으로 이루어진 String
-                characterWorldNameStr = line.split("마이메이플")[1];
-                continue;
-            } else if (line.contains("월드/캐릭터 선택")) {
-                String[] tempArr = line.split("월드/캐릭터 선택");
-                worldName = tempArr[tempArr.length - 1];
-                characterWorldNameStr = characterWorldNameStr.split(worldName)[0] + worldName;
-                index = i;
-                break;
-            }
-        }
-
-        // 다수의 [캐릭터+월드명+캐릭터]로 되어 있는 문자열 검색
+        // [worldName] 으로만 이루어진 문자열 검색
         String characterWorldCharacterStr = "";
-        for (int i = index; i < lines.length; i++) {
-            String line = lines[i];
-            if (line.contains(characterWorldNameStr)) {
-                characterWorldCharacterStr = line;
+        WorldInfo worldInfo = null;
+        for (WorldInfo info : WorldInfo.getSpecificWorldInfoList()) {
+            for (int i = 0; i < lines.length; i++) {
+                if (info.getName().equals(lines[i])) {
+                    worldInfo = info;
+                    characterWorldCharacterStr = lines[i + 1];
+                    break;
+                }
+            }
+            if (worldInfo != null) {
                 break;
             }
         }
@@ -116,8 +104,8 @@ public class MapleStoryController {
         for (int i = 0; i < characterWorldCharacterStr.length(); i++) {
             String s = Character.toString(characterWorldCharacterStr.charAt(i));
             temp += s;
-            if (temp.endsWith(worldName)) {
-                String innerTemp = temp.substring(0, temp.length() - worldName.length());
+            if (temp.endsWith(worldInfo.getName())) {
+                String innerTemp = temp.substring(0, temp.length() - worldInfo.getName().length());
 
                 if (innerTemp.length() > 0 &&
                         (innerTemp + characterWorldCharacterStr.substring(i + 1, i + innerTemp.length() + 1)).equals(innerTemp + innerTemp)) {
@@ -129,7 +117,7 @@ public class MapleStoryController {
             }
         }
 
-        return new WorldCharacterPair(worldName, characterNameList);
+        return new WorldCharacterPair(worldInfo.getName(), characterNameList);
     }
 
     /**
